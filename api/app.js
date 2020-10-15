@@ -1,8 +1,12 @@
 // Imports
 const express = require('express');
+const bodyParser = require('body-parser');
 
 // Init serveur
 const app = express();
+
+const postsRoutes = require('./routes/posts');
+const usersRoutes = require('./routes/users');
 
 // Configure routes
 app.use('/', function(req, res, next) {
@@ -11,5 +15,10 @@ app.use('/', function(req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+
+app.use(bodyParser.json());
+
+app.use('/api', usersRoutes);
+
 
 module.exports = app;
