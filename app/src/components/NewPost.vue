@@ -8,10 +8,15 @@
     </div>
     <div class="post-textarea">
         <label for="post-area"></label>
-        <v-icon aria-hidden="false">
-          mdi-account
-        </v-icon>
-        <textarea id="post-area" :value="postArea" placeholder="Écrire votre post ici"></textarea>
+        <textarea id="post-area" class="form-control" :value="postArea" placeholder="Écrire votre post ici"></textarea>
+    </div>
+    <div class="new-post-buttons">
+      <div class="c-6">
+        <span class="mdi mdi-image icon-inactive"></span>
+      </div>
+      <div class="c-6">
+        <button id="btn-new-post" class="btn-lg btn-l" type="submit">Publier</button>
+      </div>
     </div>
   </div>
 
@@ -23,7 +28,7 @@ export default {
   props: {
     userName: {
       type: String,
-      default: 'Victor',
+      default: 'Victor Deweerdt',
       required:true
     },
     userPhoto: {
@@ -41,8 +46,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
+
 #user-photo {
-  background-color: $second-color;
+  background: url(../assets/images/user-photo-vd.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 50px;
   height: 50px;
   border-radius: 50px;
@@ -61,17 +70,24 @@ export default {
   margin: 2.5rem auto;
 }
 
-.post-textarea {
-  margin-top:2rem;
-}
-
 #post-area {
   width: 100%;
   padding: 1rem 0;
   border: none;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 1.2rem;
-  color: black;
-  font-weight: 500;
+  font-family: neue-haas-unica, sans-serif;
+  font-weight: 400;
+  min-height: 150px;
+  font-size: 1.5rem;
+}
+
+.new-post-buttons {
+  display: flex;
+  min-height: 60px;
+  align-items: center;
+  .mdi {
+    border: 1px solid #e4e4e4;
+    padding: 10px 15px;
+    border-radius: 30px;
+  }
 }
 </style>

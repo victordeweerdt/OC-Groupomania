@@ -179,12 +179,37 @@ table {
   }
 }
 
+.form-control:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.mdi {
+  font-size: 1.5rem;
+}
+
+.icon-inactive {
+  color: #AFAFAF;
+}
+
+.btn-l {
+  background-color: #FFEEEE;
+  color: #fd2d05;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 15px 0;
+  font-weight: 700;
+}
+
 p {
   font-size: 1rem;
   font-weight: 500;
 }
 
 body {
-  background-color: #FAFAFA;
+  background-color: white;
+  font-family: neue-haas-unica, sans-serif;
 }
 /*# sourceMappingURL=main.css.map */
