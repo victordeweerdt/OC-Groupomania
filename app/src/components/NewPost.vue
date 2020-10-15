@@ -8,6 +8,9 @@
     </div>
     <div class="post-textarea">
         <label for="post-area"></label>
+        <v-icon aria-hidden="false">
+          mdi-account
+        </v-icon>
         <textarea id="post-area" :value="postArea" placeholder="Écrire votre post ici"></textarea>
     </div>
   </div>

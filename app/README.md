@@ -1,4 +1,4 @@
-# app-keeplink
+# frontend
 
 ## Project setup
 ```
