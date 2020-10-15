@@ -184,6 +184,37 @@ table {
           box-shadow: none;
 }
 
+.btn-submit {
+  background-color: #FD2D01;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 15px 0 17px;
+  font-weight: 700;
+}
+
+.btn-submit:hover {
+  background-color: #FFD7D7;
+  color: #FD2D01;
+}
+
+.input-l {
+  background-color: #FFEEEE;
+  color: #000000;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 15px 30px 17px;
+  font-weight: 500;
+}
+
+.input-l:focus {
+  border: none;
+}
+
 .mdi {
   font-size: 1.5rem;
 }
@@ -206,6 +237,23 @@ table {
 p {
   font-size: 1rem;
   font-weight: 500;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 800;
+}
+
+@media (max-width: 1400px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 960px) {
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 
 body {
