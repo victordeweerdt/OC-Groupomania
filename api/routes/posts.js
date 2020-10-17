@@ -1,25 +1,25 @@
-// // On déclare notre framework Express
+// On déclare notre framework Express
 
-// const express = require('express');
-// const router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-// // On déclare les middlewares qu'on va utiliser dans ce fichier
+// On déclare les middlewares qu'on va utiliser dans ce fichier
 
-// const auth = require('../middleware/auth');
-// const multer = require('../middleware/multer-config');
+const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 
-// // On fait le lien avec notre controller
+// On fait le lien avec notre controller
 
-// const postCtrl = require('../controllers/posts');
+const postCtrl = require('../controllers/posts');
 
-// // Puis on crée nos différentes routes liées aux sauces
-// // En spécifiant les types de requètes (POST, GET, PUT & DELETE)
+// Puis on crée nos différentes routes liées aux sauces
+// En spécifiant les types de requètes (POST, GET, PUT & DELETE)
 
-// router.get('/', auth, postCtrl.getAllPosts);
-// router.post('/', auth, multer, postCtrl.createPost);
+// router.get('/posts/', auth, postCtrl.getAllPosts);
+router.post('/posts/', auth, postCtrl.createPost);
 // router.post('/:id/comments', auth, postCtrl.createComment);
 // router.delete('/:id', auth, postCtrl.deletePost);
 
-// // On exporte le module.
+// On exporte le module.
 
-// module.exports = router;
+module.exports = router;

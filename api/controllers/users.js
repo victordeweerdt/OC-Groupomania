@@ -5,11 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const db = require('../models/index.js');
 
-// Import du model User
-
-const Users = require('../models/users');
-
-//Je crée la fonction qui va concerner mon inscription
+// Inscription d'un utilisateur
 exports.signup = (req, res, next) => {
 
   const Users = db.Users;
@@ -32,6 +28,7 @@ exports.signup = (req, res, next) => {
       .catch(error => res.status(500).json({ error }));
 };
 
+// Connexion d'un utilisateur existant
 exports.login = (req, res, next) => {
 
   const Users = db.Users;
@@ -64,3 +61,35 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+// Suppression d'un utilisateur
+exports.delete = (req, res, next) => {
+
+  const Users = db.Users;
+
+  Users.destroy({ 
+    where: { 
+      email: req.body.email
+    }
+  })
+  .then(() => res.status(200).json({ message: 'Utilisateur supprimé' }))
+  .catch(error => res.status(500).json({ error }));
+};
+
+// Affichage d'un utilisateur
+exports.getOneUser = (req, res, next) => {
+  const token = req.headers.authorization.split(' ')[1]; // On récupère tout ce qui se trouve après l'espace dans le header
+  const decodedToken = jwt.verify(token, 'NEW_TOKEN'); // On le décode
+  const userId = decodedToken.userId;
+
+  const Users = db.Users;
+
+  Users.findOne({ 
+    where: { 
+      id: userId,
+    },
+  })
+  .then((user) => res.status(200).json({ user }))
+  .catch(error => res.status(500).json({ error }));
+};
+

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 // Init serveur
 const app = express();
 
-// const postsRoutes = require('./routes/posts');
+const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
 
 // Configure routes
@@ -21,5 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/api/', usersRoutes);
+app.use('/api/', postsRoutes);
 
 module.exports = app;

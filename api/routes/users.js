@@ -7,12 +7,15 @@ const router = express.Router();
 
 const userCtrl = require('../controllers/users');
 
+const auth = require('../middleware/auth');
+
 // Puis on crée nos différentes routes liées aux utilisateurs
 // En spécifiant qu'on a uniquement à faire ici à des requètes de type POST
 
 router.post('/users/signup', userCtrl.signup);
 router.post('/users/login', userCtrl.login);
-// router.delete('/:id', userCtrl.delete);
+router.delete('/users/:id', userCtrl.delete);
+router.get('/users/', auth, userCtrl.getOneUser);
 
 // On exporte le module.
 
