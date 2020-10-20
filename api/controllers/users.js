@@ -8,16 +8,29 @@ const db = require('../models/index.js');
 // Inscription d'un utilisateur
 exports.signup = (req, res, next) => {
 
+  const lastname = req.body.lastName;
+  const firstname = req.body.firstName;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (lastname == null || firstname == null || email == null || password == null) {
+    return res.status(400).json({ error: "Vous n'avez pas rempli tous les champs obligatoires."})
+  } else if (password.length <= 5) {
+    return res.status(400).json({ error: "Mot de passe trop court."})
+  } else if (password.length >= 15) {
+    return res.status(400).json({ error: "Mot de passe trop long."})
+  }
+  
   const Users = db.Users;
 
     bcrypt.hash(req.body.password, 10) // je hash mon mot de passe et le sale 10 fois
       .then(hash => {
             const user = new Users({ // Je crée ensuite mon nouvelle utilisateur
-            lastName: req.body.lastName,
-            firstName: req.body.firstName,
-            email: req.body.email,
+            lastName: lastname,
+            firstName: firstname,
+            email: email,
             password: hash,
-            permission: req.body.permission,
+            permission: false,
             photo: null
         });
 
@@ -53,9 +66,10 @@ exports.login = (req, res, next) => {
             token: jwt.sign(
               { userId: user._id },
               'NEW_TOKEN',
-              { expiresIn: '24h' }
+              {algorithm: 'HS256' }
               )
           });
+          console.log(user._id);
         })
         .catch(error => res.status(500).json({ error }));
     })
@@ -80,6 +94,7 @@ exports.delete = (req, res, next) => {
 exports.getOneUser = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1]; // On récupère tout ce qui se trouve après l'espace dans le header
   const decodedToken = jwt.verify(token, 'NEW_TOKEN'); // On le décode
+  console.log(decodedToken);
   const userId = decodedToken.userId;
 
   const Users = db.Users;

@@ -13,12 +13,22 @@
             <p class="message-post"> {{ message }}</p>
             <div src="../assets/images/post-image-sonia.jpg" class="media-post"></div>
         </div>
-        <div class="comments">
-            <p class="number-comments"><span id="comments-number">1</span> commentaire</p>
+        <div class="last-comments">
+            <!-- <p class="number-comments"><span id="comments-number">1</span> commentaire</p> -->
+            <div class="comment-bloc" :value="lastComment">
+                <div class="user-photo-comment" :value="lastCommentUser"></div>
+                <div class="comment-area">
+                    <p class="user-name">{{ lastCommentUserFullName }}</p>
+                    <p>{{ lastCommentText }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="commentZone">
             <div class="comment-bloc">
                 <div class="user-photo-comment"></div>
                 <textarea id="comment-area" class="form-control" :value="commentArea" placeholder="Écrire votre commentaire ici"></textarea>
             </div>
+            <button id="comment-submit" type="submit" class="btn-med">Publier</button>
         </div>
     </div>
 </template>
@@ -49,8 +59,22 @@ export default {
         type: String,
         required:true,
         default: ''
+        },
+        lastCommentUser: {
+            type: String
+        },
+        lastCommentText: {
+            type: String,
+            required:true,
+            default: 'Super bonne référence'
+        },
+        lastCommentUserFullName: {
+            type: String,
+            required:true,
+            default: 'Victor Deweerdt'
         }
-    }
+    },
+    
 }
 </script>
 
@@ -76,15 +100,18 @@ export default {
     width: 100%;
 }
 
-.comments {
+.commentZone {
     width: 100%;
     .number-comments {
         font-size: 0.9rem;
         padding: 20px 0;
     }
-    .comment-bloc {
-        display: flex;
-    }
+}
+
+.comment-bloc {
+    display: flex;
+    margin: 10px 0;
+    width: 100%;
 }
 
 #user-photo {
@@ -122,7 +149,7 @@ export default {
 
 .user-name {
     font-size: 0.9rem;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 #comment-area {
@@ -138,6 +165,22 @@ export default {
         height: auto;
     }
 }
+
+.last-comments {
+    display: flex;
+    width: 100%;
+    .comment-area {
+        width: calc(100% - 70px);
+        background-color: #FAFAFA;
+        margin-left: 20px;
+        padding: 10px 20px;
+        .user-name {
+            padding: 0 0 5px;
+        }
+    }
+}
+
+
 
 .user-id {
     display: flex;

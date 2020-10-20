@@ -37,7 +37,7 @@ exports.createPost = (req, res, next) => {
             user_id: userId,
             content: req.body.content,
             attachments: req.body.attachments,
-            comments: "",
+            comments: {},
         });
         post.save() // J'enregistre mon post
         .then(() => res.status(201).json({ message: 'Post créé !' }))
