@@ -1,11 +1,13 @@
 <template>
-    <div class="connect">
+    <div class="signup">
         <div class="c-6 left-side">
             <h1 class="title">Bonjour et bienvenu sur Keeplink</h1>
             <p class="subtitle">Votre nouveau réseau social d’entreprise</p>
         </div>
         <div class="c-6 right-side">
-            <input type="email" class="input-l" id="email-input" placeholder="name@example.com">
+            <input type="text" class="input-l" id="firstName" placeholder="First-name">
+            <input type="text" class="input-l" id="lastName" placeholder="Last-name">
+            <input type="email" class="input-l" id="email" placeholder="name@example.com">
             <input type="password" class="input-l" id="password-input" placeholder="Votre mot de passe">
             <button type="submit" class="btn btn-primary mb-2 btn-submit">Je me connecte</button>
         </div>
@@ -15,14 +17,14 @@
 
 <script>
 export default {
-    name: 'Connect'    
+    name: 'signup'    
 }
 </script>
 
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
 
-.connect {
+.signup {
     display: flex;
     min-height: 100%;
     align-items: center;

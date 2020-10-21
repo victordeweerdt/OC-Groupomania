@@ -11,7 +11,7 @@
       </div>
       <div class="c-4">
         <div id="account">
-          <router-link to="/Connect"><span class="mdi mdi-logout icon-inactive"></span></router-link>
+          <router-link to="/Login"><span class="mdi mdi-logout icon-inactive"></span></router-link>
           <div id="user-photo-header"></div>
         </div>
       </div>

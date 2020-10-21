@@ -63,15 +63,9 @@ exports.login = (req, res, next) => {
           res.status(200).json({ // On va créer ici un token avec le package jwt
             userId: user.id,
             token: jwt.sign(
-<<<<<<< HEAD
-              { userId: user._id },
-              'NEW_TOKEN',
-              {algorithm: 'HS256' }
-=======
               { userId: user.id },
               process.env.SECRET_TOKEN,
               { expiresIn: '24h' }
->>>>>>> test-routes
               )
           });
           console.log(user._id);
@@ -98,12 +92,7 @@ exports.delete = (req, res, next) => {
 // Affichage d'un utilisateur
 exports.getOneUser = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1]; // On récupère tout ce qui se trouve après l'espace dans le header
-<<<<<<< HEAD
-  const decodedToken = jwt.verify(token, 'NEW_TOKEN'); // On le décode
-  console.log(decodedToken);
-=======
   const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN); // On le décode
->>>>>>> test-routes
   const userId = decodedToken.userId;
 
   const Users = db.Users;
