@@ -10,7 +10,7 @@ const users = require('../models/users.js');
 // Création d'un post
 exports.createPost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'NEW_TOKEN');
+    const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = decodedToken.userId;
 
     console.log(userId);
