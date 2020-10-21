@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 // Init serveur
 const app = express();
 
+require('dotenv').config();
+
 const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
 

@@ -45,14 +45,13 @@ exports.login = (req, res, next) => {
       bcrypt.compare(req.body.password, user.password) // Je cherche ensuite si le mot de passe associé crypté, peut correspondre au mot de passe crypté de ma DB
         .then(valid => {
           if (!valid) {
-            console.log('good');
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
           res.status(200).json({ // On va créer ici un token avec le package jwt
-            userId: user._id,
+            userId: user.id,
             token: jwt.sign(
-              { userId: user._id },
-              'NEW_TOKEN',
+              { userId: user.id },
+              process.env.SECRET_TOKEN,
               { expiresIn: '24h' }
               )
           });
@@ -79,7 +78,7 @@ exports.delete = (req, res, next) => {
 // Affichage d'un utilisateur
 exports.getOneUser = (req, res, next) => {
   const token = req.headers.authorization.split(' ')[1]; // On récupère tout ce qui se trouve après l'espace dans le header
-  const decodedToken = jwt.verify(token, 'NEW_TOKEN'); // On le décode
+  const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN); // On le décode
   const userId = decodedToken.userId;
 
   const Users = db.Users;
