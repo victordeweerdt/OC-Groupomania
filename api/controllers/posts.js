@@ -17,8 +17,6 @@ exports.createPost = (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
     const userId = decodedToken.userId;
 
-    console.log(userId);
-
     const User = db.Users;
 
     User.findOne({
@@ -31,20 +29,22 @@ exports.createPost = (req, res, next) => {
             return res.status(400).json({ error: 'Utilisateur non trouvé !'});
         }
     })
+    .catch(err => res.status(500).json({ err }));
 
     const Posts = db.Posts;
     
     if (!regex.test(Posts.content)) {
         return res.status(500).json({ error: 'Des caractères invalides se trouvent dans vos champs.' });
     } else {
-        const post = new Posts({ // Je crée ensuite mon nouveau post
+        const newPost = Posts.build({
             user_id: userId,
             content: req.body.content,
             attachments: req.body.attachments
-        });
-        post.save() // J'enregistre mon post
-        .then(() => res.status(201).json({ message: 'Post créé !' }))
-        .catch(error => res.status(400).json({ error }));
+        })
+        console.log(newPost);
+        // post.save() // J'enregistre mon post
+        // .then(() => res.status(201).json({ message: 'Post créé !' }))
+        // .catch(error => res.status(400).json({ error }));
     }
   };
 
