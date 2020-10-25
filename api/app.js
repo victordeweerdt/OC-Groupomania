@@ -1,6 +1,8 @@
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+
 
 // Init serveur
 const app = express();
@@ -10,6 +12,7 @@ require('dotenv').config();
 const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
 
+
 // Configure routes
 app.use('/', function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,11 +21,13 @@ app.use('/', function(req, res, next) {
     next();
 });
 
+
 // BodyParser configuration
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/api/', usersRoutes);
-app.use('/api/', postsRoutes);
+app.use('/api/users', usersRoutes);
+app.use('/api/posts', postsRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;

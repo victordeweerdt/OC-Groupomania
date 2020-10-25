@@ -15,8 +15,8 @@ const postCtrl = require('../controllers/posts');
 // Puis on crée nos différentes routes liées aux sauces
 // En spécifiant les types de requètes (POST, GET, PUT & DELETE)
 
-// router.get('/posts/', auth, postCtrl.getAllPosts);
-router.post('/posts/', auth, postCtrl.createPost);
+router.get('/', auth, postCtrl.getAllPosts);
+router.post('/', auth, postCtrl.createPost);
 // router.post('/:id/comments', auth, postCtrl.createComment);
 // router.delete('/:id', auth, postCtrl.deletePost);
 
