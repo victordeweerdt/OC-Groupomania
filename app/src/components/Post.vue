@@ -1,5 +1,5 @@
 <template>
-    <div class="post">
+    <div class="post c-6 cm-12">
         <div class="top-post">
             <div class="c-8 user-id">
                 <div id="user-photo"></div>
@@ -15,7 +15,7 @@
         </div>
         <div class="last-comments">
             <!-- <p class="number-comments"><span id="comments-number">1</span> commentaire</p> -->
-            <div class="comment-bloc" :value="lastComment">
+            <div class="comment-bloc">
                 <div class="user-photo-comment" :value="lastCommentUser"></div>
                 <div class="comment-area">
                     <p class="user-name">{{ lastCommentUserFullName }}</p>
@@ -36,58 +36,35 @@
 <script>
 export default {
     name: 'Post',
-    props: {
-        userName: {
-        type: String,
-        default: 'Victor Deweerdt',
-        required:true
-        },
-        userPhoto: {
-        type: String
-        },
-        postDate: {
-            type: String,
-            required:true,
-            default: '2'
-        },
-        message: {
-        type: String,
-        required:true,
-        default: 'Ceci est un nouveau message concernant un post qui pourrait ressembler à ça.'
-        },
-        commentArea: {
-        type: String,
-        required:true,
-        default: ''
-        },
-        lastCommentUser: {
-            type: String
-        },
-        lastCommentText: {
-            type: String,
-            required:true,
-            default: 'Super bonne référence'
-        },
-        lastCommentUserFullName: {
-            type: String,
-            required:true,
-            default: 'Victor Deweerdt'
+    data() {
+        return {
+            userName: "Victor Deweerdt",
+            userPhoto: "",
+            postDate: "2",
+            message: "Ceci est un nouveau message concernant un post qui pourrait ressembler à ça.",
+            commentArea: "",
+            lastCommentUser: "",
+            lastCommentText: "Super bonne référence",
+            lastCommentUserFullName: "Victor Deweerdt"
         }
-    },
-    
+    }
 }
 </script>
 
 <style scoped lang="scss">
+@import '../assets/styles/main.scss';
+
 .post {
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
     margin: 30px auto;
     padding: 40px 0;
     background-color: white;
     padding: 25px;
     border-radius: 40px;
+        @media (max-width: $lg) {
+        margin: 30px 40px;
+    }
 }
 
 .top-post {

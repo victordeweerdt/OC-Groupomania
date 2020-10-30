@@ -1,23 +1,35 @@
 <template>
-  <div class="new-post c-6">
+  <div class="new-post c-6 cm-12">
     <div class="identity">
       <div id="user-photo"></div>
       <div>
         <p id="user-name">{{ userName }}</p>
       </div>
     </div>
-    <div class="post-textarea">
-        <label for="post-area"></label>
-        <textarea id="post-area" class="form-control" :value="postArea" placeholder="Écrire votre post ici"></textarea>
-    </div>
-    <div class="new-post-buttons">
-      <div class="c-6">
-        <span class="mdi mdi-image icon-inactive"></span>
+    <form @submit.prevent="createPost">
+      <div class="post-textarea">
+        <textarea 
+          id="post-area" 
+          class="form-control" 
+          v-model="postArea" 
+          placeholder="Écrire votre post ici"
+        ></textarea>
       </div>
-      <div class="c-6">
-        <button id="btn-new-post" class="btn-lg btn-l" type="submit">Publier</button>
+      <div class="new-post-buttons">
+        <div class="c-6 upload-file">
+          <input
+            class="add-image"
+            type="file"
+            id="inputFile"
+            name="inputFile"
+            @change="uploadImage"
+          />
+        </div>
+        <div class="c-6">
+          <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier"/>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 
 </template>
@@ -26,18 +38,21 @@
 export default {
   name: 'NewPost',
   props: {
-    userName: {
-      type: String,
-      default: 'Victor Deweerdt',
-      required:true
+    submit: Function
+  },
+  data() {
+    return {
+      userName: "Victor Deweerdt",
+      userPhoto: "",
+      postArea: ""
+    }
+  },
+  methods: {
+    createPost() {
+      console.log('Ça marche !');
     },
-    userPhoto: {
-      type: String
-    },
-    postArea: {
-      type: String,
-      required:true,
-      default: ''
+    uploadImage() {
+      console.log('Image Téléchargée !')
     }
   }
 }
@@ -68,6 +83,9 @@ export default {
 
 .new-post {
   margin: 2.5rem auto;
+  @media (max-width: $lg) {
+    padding: 0 40px;
+  }
 }
 
 #post-area {

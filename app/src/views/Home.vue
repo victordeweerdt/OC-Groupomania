@@ -1,6 +1,6 @@
 <template>
   <div class="forum">
-    <NewPost/>
+    <CreatePost/>
     <div id="post-zone">
       <Post/>
     </div>
@@ -9,13 +9,13 @@
 
 <script>
 // @ is an alias to /src
-import NewPost from '@/components/NewPost.vue'
+import CreatePost from '@/components/CreatePost.vue'
 import Post from '@/components/Post.vue'
 
 export default {
   name: 'Home',
   components: {
-    NewPost,
+    CreatePost,
     Post
   }
 }

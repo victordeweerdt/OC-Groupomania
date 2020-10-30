@@ -10,16 +10,12 @@ const multer = require('../middleware/multer-config');
 
 // On fait le lien avec notre controller
 
-const postCtrl = require('../controllers/posts');
+const commentCtrl = require('../controllers/comments');
 
 // Puis on crée nos différentes routes liées aux sauces
 // En spécifiant les types de requètes (POST, GET, PUT & DELETE)
 
-router.get('/', auth, postCtrl.getAllPosts);
-router.post('/', auth, postCtrl.createPost);
-router.post('/:id', auth, postCtrl.createComment);
-router.put('/:id', auth, postCtrl.modifyPost);
-router.delete('/:id', auth, postCtrl.deletePost);
+router.post('/:id', auth, commentCtrl.createComment);
 
 // On exporte le module.
 

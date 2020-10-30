@@ -1,10 +1,18 @@
 <template>
-    <div class="signup">
+    <div id="signup">
         <div class="c-6 left-side">
             <h1 class="title">Bonjour et bienvenu sur Keeplink</h1>
             <p class="subtitle">Votre nouveau réseau social d’entreprise</p>
         </div>
         <div class="c-6 right-side">
+            <div class="titles c-12">
+                <div class="c-6">
+                    <p class="signup-title">Sign-up</p>
+                </div>
+                <div class="c-6 login">
+                    <a href="#/login" class="login-title">Login</a>
+                </div>
+            </div>
             <input type="text" class="input-l" id="firstName" placeholder="First-name">
             <input type="text" class="input-l" id="lastName" placeholder="Last-name">
             <input type="email" class="input-l" id="email" placeholder="name@example.com">
@@ -24,7 +32,7 @@ export default {
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
 
-.signup {
+#signup {
     display: flex;
     min-height: 100%;
     align-items: center;
@@ -53,6 +61,24 @@ export default {
     }
     @media (max-width:$xl) {
         padding: 0px 70px;
+    }
+}
+
+.titles {
+    display: flex;
+    margin-bottom: 2rem;
+    .signup-title {
+        text-align: right;
+        padding-right: 10px;
+        font-size: 2rem;
+    }
+    .login-title {
+        text-align: left;
+        padding-left: 10px;
+    }
+    .login {
+        display: flex;
+        align-items: center;
     }
 }
 
