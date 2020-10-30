@@ -7,6 +7,8 @@ const path = require('path');
 // Init serveur
 const app = express();
 
+const cors = require('cors');
+
 require('dotenv').config();
 
 const postsRoutes = require('./routes/posts');
@@ -25,6 +27,8 @@ app.use('/', function(req, res, next) {
 // BodyParser configuration
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use('/api/users', usersRoutes);
 app.use('/api/posts', postsRoutes);

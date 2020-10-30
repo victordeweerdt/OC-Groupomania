@@ -13,20 +13,80 @@
                     <a href="#/login" class="login-title">Login</a>
                 </div>
             </div>
-            <input type="text" class="input-l" id="firstName" placeholder="First-name">
-            <input type="text" class="input-l" id="lastName" placeholder="Last-name">
-            <input type="email" class="input-l" id="email" placeholder="name@example.com">
-            <input type="password" class="input-l" id="password-input" placeholder="Votre mot de passe">
-            <button type="submit" class="btn btn-primary mb-2 btn-submit">Je me connecte</button>
+            <input 
+                type="text" 
+                class="input-l" 
+                id="firstName" 
+                placeholder="First-name"
+                v-model="dataUser.firstName"
+            />
+            <input 
+                type="text" 
+                class="input-l" 
+                id="lastName" 
+                placeholder="Last-name"
+                v-model="dataUser.lastName"
+            />
+            <input 
+                type="email" 
+                class="input-l" 
+                id="email" 
+                placeholder="name@example.com"
+                v-model="dataUser.email"
+            />
+            <input 
+                type="password" 
+                class="input-l" 
+                id="password-input" 
+                placeholder="Votre mot de passe"
+                v-model="dataUser.password"
+            />
+            <button 
+                type="submit" 
+                class="btn btn-primary mb-2 btn-submit"
+                @click.prevent="submitSignup"
+            >Je crée mon compte</button>
         </div>
     </div>
 </template>
 
 
 <script>
+import axios from "axios";
+
 export default {
-    name: 'signup'    
-}
+    name: 'signup',  
+    data() {
+        return {
+            dataUser: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: ''
+            }
+        };
+    },
+
+    methods: {
+        submitSignup() {
+            if (this.firstName !== null || this.lastName !== null || this.email !== null || this.password !== null) {
+                axios
+                    .post("http://localhost:3000/api/users/signup",
+                        this.dataUser
+                    )
+                    .then(response => {
+                        console.log('toto')
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    })
+            } else {
+                alert("L'un des champs n'est pas renseigné !");
+            }
+        }
+    },
+};
 </script>
 
 <style scoped lang="scss">
