@@ -2,7 +2,16 @@
   <div class="forum">
     <CreatePost/>
     <div id="post-zone">
-      <Post/>
+      <Post
+				v-for="post in allPosts"
+				:firstName="post.user_id.firstName"
+				:lastName="post.user_id.lastName"
+				:userPhoto="post.user_id.photo"
+        :createdAt="post.createdAt"
+				:content="post.content"
+        :comments="post.comments"
+				:key="post.id"
+			/>
     </div>
   </div>
 </template>
@@ -11,12 +20,44 @@
 // @ is an alias to /src
 import CreatePost from '@/components/CreatePost.vue'
 import Post from '@/components/Post.vue'
+import axios from 'axios'
 
 export default {
   name: 'Home',
   components: {
     CreatePost,
     Post
+  },
+  data() {
+    return {
+      cookie: this.$cookies.get("token"),
+      allPosts: [],
+      post: {
+        user_id: "",
+        createdAt: "",
+        content: "",
+        comments: "",
+        id: ""
+      }
+    }
+  },
+  created() {
+    if (this.$cookies.isKey("token")) {
+      console.log('Token : OK')
+    } else {
+      this.$router.push({name: 'Login'});
+    }
+    axios
+      .get('http://localhost:3000/api/posts', {
+        headers: { Authorization: "Bearer " + this.cookie }
+      })
+      .then((response) => {
+        console.log("posts", response.data);
+        this.allPosts = response.data
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 }
 </script>

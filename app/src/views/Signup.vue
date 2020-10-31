@@ -75,8 +75,8 @@ export default {
                         this.dataUser
                     )
                     .then(response => {
-                        console.log('toto')
                         console.log(response)
+                        window.location.href = '#/login';
                     })
                     .catch(error => {
                         console.log(error.response)

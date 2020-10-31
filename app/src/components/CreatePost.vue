@@ -3,7 +3,7 @@
     <div class="identity">
       <div id="user-photo"></div>
       <div>
-        <p id="user-name">{{ userName }}</p>
+        <p id="user-name">{{ user.firstName }} {{ user.lastName }}</p>
       </div>
     </div>
     <form @submit.prevent="createPost">
@@ -11,7 +11,7 @@
         <textarea 
           id="post-area" 
           class="form-control" 
-          v-model="postArea" 
+          v-model="postContent.content" 
           placeholder="Écrire votre post ici"
         ></textarea>
       </div>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'NewPost',
   props: {
@@ -42,14 +43,38 @@ export default {
   },
   data() {
     return {
-      userName: "Victor Deweerdt",
+      cookie: this.$cookies.get("token"),
+      user: "",
       userPhoto: "",
-      postArea: ""
+      postContent: {
+        content: "",
+        attachments: "",
+        comments: null
+      }
     }
+  },
+  created() {
+    axios
+      .get('http://localhost:3000/api/users/me', {
+        headers: { 
+          Authorization: "Bearer " + this.cookie }
+      })
+      .then((response) => {
+        this.user = response.data.user
+      })
+      .catch(error => {
+        console.log(error);
+      })
   },
   methods: {
     createPost() {
-      console.log('Ça marche !');
+      axios
+        .post('http://localhost:3000/api/posts', 
+        this.postContent , {
+        Authorization: "Bearer " + this.cookie }
+      )
+      .then(() => this.submit())
+      .catch((error) => console.log(error));
     },
     uploadImage() {
       console.log('Image Téléchargée !')

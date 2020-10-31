@@ -77,8 +77,7 @@ exports.login = (req, res, next) => {
               process.env.SECRET_TOKEN,
               { expiresIn: '24h' }
               )
-          });
-          console.log(user._id);
+          })
         })
         .catch(error => res.status(500).json({ error }));
     })

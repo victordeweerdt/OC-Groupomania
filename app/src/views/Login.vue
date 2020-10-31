@@ -13,17 +13,64 @@
                     <a href="#/signup" class="signup-title">Sign-up</a>
                 </div>
             </div>
-            <input type="email" class="input-l" id="email-input" placeholder="name@example.com">
-            <input type="password" class="input-l" id="password-input" placeholder="Votre mot de passe">
-            <button type="submit" class="btn btn-primary mb-2 btn-submit">Je me connecte</button>
+            <input 
+                type="email" 
+                class="input-l" 
+                id="email-input" 
+                placeholder="name@example.com"
+                v-model="dataUser.email"
+            />
+            <input 
+                type="password" 
+                class="input-l" 
+                id="password-input" 
+                placeholder="Votre mot de passe"
+                v-model="dataUser.password"
+            />
+            <button
+                @click.prevent="submitLogin"
+                type="submit" 
+                class="btn btn-primary mb-2 btn-submit"
+            >Je me connecte</button>
         </div>
     </div>
 </template>
 
 
 <script>
+import axios from "axios";
+
 export default {
-    name: 'login'    
+    name: 'login',
+    data() {
+        return {
+            dataUser: {
+                email: '',
+                password: ''
+            }
+        };
+    },
+
+    methods: {
+        submitLogin() {
+            if (this.email !== null || this.password !== null) {
+                axios
+                    .post("http://localhost:3000/api/users/login",
+                        this.dataUser
+                    )
+                    .then(response => {
+                        localStorage.setItem("token", response.data.token);
+                        this.$cookies.set("token", response.data.token, '1d');
+                        this.$router.push({name: 'Home'});
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    })
+            } else {
+                alert("L'un des champs n'est pas renseigné !");
+            }
+        }
+    },   
 }
 </script>
 

@@ -3,14 +3,14 @@
         <div class="top-post">
             <div class="c-8 user-id">
                 <div id="user-photo"></div>
-                <p class="user-name"> {{ userName }} </p>
+                <p class="user-name"> {{ firstName }} {{ lastName }} </p>
             </div>
             <div class="c-4">
-                <p class="post-date"> Il y a {{ postDate }} heures.</p>
+                <p class="post-date"> Il y a {{ createdAt }}.</p>
             </div>
         </div>
         <div class="content">
-            <p class="message-post"> {{ message }}</p>
+            <p class="message-post"> {{ content }}</p>
             <div src="../assets/images/post-image-sonia.jpg" class="media-post"></div>
         </div>
         <div class="last-comments">
@@ -26,7 +26,7 @@
         <div class="commentZone">
             <div class="comment-bloc">
                 <div class="user-photo-comment"></div>
-                <textarea id="comment-area" class="form-control" :value="commentArea" placeholder="Écrire votre commentaire ici"></textarea>
+                <textarea id="comment-area" class="form-control" placeholder="Écrire votre commentaire ici"></textarea>
             </div>
             <button id="comment-submit" type="submit" class="btn-med">Publier</button>
         </div>
@@ -38,14 +38,35 @@ export default {
     name: 'Post',
     data() {
         return {
-            userName: "Victor Deweerdt",
-            userPhoto: "",
-            postDate: "2",
-            message: "Ceci est un nouveau message concernant un post qui pourrait ressembler à ça.",
-            commentArea: "",
             lastCommentUser: "",
             lastCommentText: "Super bonne référence",
             lastCommentUserFullName: "Victor Deweerdt"
+        }
+    },
+    props: {
+        firstName: {
+            type: String,
+            default: "Victor"
+        },
+        lastName: {
+            type: String,
+            default: "Deweerdt"
+        },
+        userPhoto: {
+            type: String,
+            default: ""
+        },
+        createdAt: {
+            type: String,
+            default: "2 heures"
+        },
+        content: {
+            type: String,
+            default: "This is my first message !"
+        },
+        comments: {
+            type: Array,
+            default: () => []
         }
     }
 }

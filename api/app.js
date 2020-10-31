@@ -8,6 +8,7 @@ const path = require('path');
 const app = express();
 
 const cors = require('cors');
+const helmet = require('helmet');
 
 require('dotenv').config();
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cors());
+app.use(helmet());
 
 app.use('/api/users', usersRoutes);
 app.use('/api/posts', postsRoutes);
