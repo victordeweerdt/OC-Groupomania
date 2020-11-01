@@ -6,13 +6,12 @@
       </div>
       <div class="c-4">
         <div class="app-name">
-          <p>Keeplink</p>
+          <router-link to="/"><p>Keeplink</p></router-link>
         </div>
       </div>
       <div class="c-4">
         <div id="account">
-          <router-link to="/Login"><span class="mdi mdi-logout icon-inactive"></span></router-link>
-          <div id="user-photo-header"></div>
+          <router-link to="/account"><div id="user-photo-header"></div></router-link>
         </div>
       </div>
     </div>
@@ -56,11 +55,15 @@ export default {
   }
 
   .app-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     p {
       font-weight: 900;
       font-size: 1.5rem;
-      color: $main-color;
+      color: black;
       text-align: center;
+      text-transform: uppercase;
     }
   }
 }
@@ -86,7 +89,7 @@ export default {
 }
 
 #logo-groupomania {
-  width: 200px;
+  width: 40px;
 }
 </style>
 

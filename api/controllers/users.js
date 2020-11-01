@@ -134,7 +134,8 @@ exports.modifyUser = (req, res, next) => {
   Users.update({ 
     lastName: req.body.lastName,
     firstName: req.body.firstName,
-    email: req.body.email},
+    email: req.body.email,
+    photo: req.body.photo},
     {where: { id: userId }
   })
   .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})

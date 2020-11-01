@@ -1,37 +1,37 @@
 <template>
-    <div class="login">
-        <div class="c-6 left-side">
-            <h1 class="title">Bonjour et bienvenu sur Keeplink</h1>
-            <p class="subtitle">Votre nouveau réseau social d’entreprise</p>
-        </div>
-        <div class="c-6 right-side">
+    <div id="login">
+        <div class="top-side c-12">
             <div class="titles c-12">
-                <div class="c-6">
-                    <p class="login-title">Login</p>
+                <div>
+                    <p class="signup-title">Se connecter</p>
                 </div>
-                <div class="c-6 signup">
-                    <a href="#/signup" class="signup-title">Sign-up</a>
+                <div class="login">
+                    <a href="#/signup" class="login-title">S'inscrire<span class="mdi mdi-arrow-right"></span></a>
                 </div>
             </div>
-            <input 
-                type="email" 
-                class="input-l" 
-                id="email-input" 
-                placeholder="name@example.com"
-                v-model="dataUser.email"
-            />
-            <input 
-                type="password" 
-                class="input-l" 
-                id="password-input" 
-                placeholder="Votre mot de passe"
-                v-model="dataUser.password"
-            />
-            <button
-                @click.prevent="submitLogin"
-                type="submit" 
-                class="btn btn-primary mb-2 btn-submit"
-            >Je me connecte</button>
+        </div>
+        <div class="bottom-side c-6 cm-12">
+            <div class="fields">
+                <input 
+                    type="email" 
+                    class="input-l" 
+                    id="email" 
+                    placeholder="name@example.com"
+                    v-model="dataUser.email"
+                />
+                <input 
+                    type="password" 
+                    class="input-l" 
+                    id="password-input" 
+                    placeholder="Votre mot de passe"
+                    v-model="dataUser.password"
+                />
+                <button 
+                    type="submit" 
+                    class="btn btn-primary mb-2 btn-submit"
+                    @click.prevent="submitLogin"
+                ><span class="mdi mdi-arrow-right"></span></button>
+            </div>
         </div>
     </div>
 </template>
@@ -77,51 +77,75 @@ export default {
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
 
-.login {
+#login {
     display: flex;
     min-height: 100%;
     align-items: center;
-    justify-content: center;
-    padding: 15rem 0;
+    flex-wrap: wrap;
 }
 
 .subtitle {
     font-size: 1.5rem;
 }
 
-.left-side {
-    padding: 0px 150px;
-    .title {
-        padding-bottom: 30px;
-    }
+.top-side {
+    display: flex;
+    min-height: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 100px auto 50px;
+    flex-wrap: wrap;
+    background-color: white;
+    padding: 100px 25% 10px;
     @media (max-width:$xl) {
-        padding: 0px 70px;
+        padding: 100px 80px 20px;
     }
 }
 
-.right-side {
-    padding: 0px 150px;
+.bottom-side {
+    padding: 50px 0;
+    margin: 0 auto;
     input {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
     @media (max-width:$xl) {
-        padding: 0px 70px;
+        padding: 50px 80px;
     }
+}
+
+.fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .titles {
     display: flex;
     margin-bottom: 2rem;
-    .login-title {
-        text-align: right;
-        padding-right: 10px;
-        font-size: 2rem;
-    }
+    text-transform: uppercase;
+    justify-content: space-between;
+
     .signup-title {
         text-align: left;
-        padding-left: 10px;
+        font-size: 1.8rem;
+        text-transform: none;
+        font-weight: 600;
     }
-    .signup {
+    .login-title {
+        text-align: right;
+        padding-left: 10px;
+        text-transform: none;
+        color: black;
+        font-size: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+
+        .mdi {
+            padding-left: 10px;
+        }
+    }
+    .login {
         display: flex;
         align-items: center;
     }

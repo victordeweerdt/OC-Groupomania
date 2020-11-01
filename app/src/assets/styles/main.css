@@ -188,10 +188,19 @@ table {
   background-color: #FD2D01;
   color: white;
   border: none;
-  border-radius: 30px;
-  width: 100%;
+  border-radius: 0;
   font-size: 1rem;
-  padding: 15px 0 17px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60px;
+  height: 60px;
   font-weight: 700;
 }
 
@@ -200,12 +209,30 @@ table {
   color: #FD2D01;
 }
 
+.btn-download {
+  background-color: white;
+  color: black;
+  border: 1px solid #F5F5F5;
+  border-radius: 0;
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 20px;
+  font-weight: 400;
+}
+
 .input-l {
-  background-color: #FFEEEE;
+  background-color: white;
   color: #000000;
   border: none;
-  border-radius: 30px;
-  width: 100%;
+  width: 49%;
   font-size: 1rem;
   padding: 15px 30px 17px;
   font-weight: 500;
@@ -268,7 +295,7 @@ h1 {
 }
 
 body {
-  background-color: white;
+  background-color: #FAFAFA;
   font-family: neue-haas-unica, sans-serif;
 }
 /*# sourceMappingURL=main.css.map */

@@ -107,9 +107,10 @@ export default {
 }
 
 .new-post {
-  margin: 2.5rem auto;
+  margin: 0 auto;
+  padding: 40px 0px;
   @media (max-width: $lg) {
-    padding: 0 40px;
+    padding: 40px 40px;
   }
 }
 

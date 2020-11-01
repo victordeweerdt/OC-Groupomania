@@ -5,6 +5,7 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 
 require('./assets/styles/main.css');
+require('./theme.js');
 
 new Vue({
     router,
