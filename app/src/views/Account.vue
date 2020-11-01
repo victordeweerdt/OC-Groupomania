@@ -34,8 +34,8 @@
                 />
                 <input 
                     type="file" 
-                    id="file" 
-                    ref="file" 
+                    id="photo" 
+                    ref="photo" 
                     v-on:change="handleFileUpload()"
                 />
                 <button 
@@ -60,7 +60,7 @@ export default {
               firstName: '',
               lastName: '',
               email: '',
-              file: ''
+              photo: ''
           }
         };
     },
@@ -101,11 +101,11 @@ export default {
         },
         downloadProfilPicture() {
           let formData = new FormData();
-          formData.append('photo', this.dataUser.file);
-          console.log(formData);
+          formData.append('photo', this.dataUser.photo, this.dataUser.photo.name);
+          console.log(this.dataUser.photo.name);
           axios
-            .post( 'http://localhost:3000/api/users/me',
-                  {params: formData},
+            .post('http://localhost:3000/api/users/me',
+                  formData,
                   {
                   headers: {
                       'Content-Type': 'multipart/form-data',
@@ -120,7 +120,7 @@ export default {
             );
         },
         handleFileUpload(){
-          this.file = this.$refs.file.files[0];
+          this.dataUser.photo = this.$refs.photo.files[0];
         },
     },
 };

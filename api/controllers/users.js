@@ -135,7 +135,8 @@ exports.modifyUser = (req, res, next) => {
     lastName: req.body.lastName,
     firstName: req.body.firstName,
     email: req.body.email,
-    photo: req.body.photo},
+    photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  },
     {where: { id: userId }
   })
   .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
