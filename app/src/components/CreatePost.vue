@@ -60,7 +60,8 @@ export default {
           Authorization: "Bearer " + this.cookie }
       })
       .then((response) => {
-        this.user = response.data.user
+        this.user = response.data.user;
+        this.showUserProfilPicture(response.data.user.photo);
       })
       .catch(error => {
         console.log(error);
@@ -71,13 +72,22 @@ export default {
       axios
         .post('http://localhost:3000/api/posts', 
         this.postContent , {
+          headers: {
         Authorization: "Bearer " + this.cookie }
+        }
       )
       .then(() => this.submit())
       .catch((error) => console.log(error));
     },
     uploadImage() {
       console.log('Image Téléchargée !')
+    },
+    showUserProfilPicture(profilPicture) {
+      const userPhoto = document.querySelector('#user-photo');
+      userPhoto.style['background-image'] = "url(" + profilPicture + ")";
+      userPhoto.style['background-position'] = "center";
+      userPhoto.style['background-repeat'] = "no repeat";
+      userPhoto.style['background-size'] = "cover";
     }
   }
 }
@@ -88,7 +98,6 @@ export default {
 @import '../assets/styles/main.scss';
 
 #user-photo {
-  background: url(../assets/images/user-photo-vd.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

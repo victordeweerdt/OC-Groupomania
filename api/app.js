@@ -14,6 +14,7 @@ require('dotenv').config();
 
 const postsRoutes = require('./routes/posts');
 const usersRoutes = require('./routes/users');
+const commentsRoutes = require('./routes/comments')
 
 
 // Configure routes
@@ -34,6 +35,7 @@ app.use(helmet());
 
 app.use('/api/users', usersRoutes);
 app.use('/api/posts', postsRoutes);
+app.use('/api/posts', commentsRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;

@@ -61,7 +61,7 @@ export default {
                     .then(response => {
                         localStorage.setItem("token", response.data.token);
                         this.$cookies.set("token", response.data.token, '1d');
-                        this.$router.push({name: 'Home'});
+                        this.$router.push("/");
                     })
                     .catch(error => {
                         console.log(error.response)

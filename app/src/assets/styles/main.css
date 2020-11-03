@@ -209,7 +209,7 @@ table {
   color: #FD2D01;
 }
 
-.btn-download {
+.btn-update {
   background-color: white;
   color: black;
   border: 1px solid #F5F5F5;
@@ -226,6 +226,26 @@ table {
           align-items: center;
   padding: 15px 20px;
   font-weight: 400;
+}
+
+.btn-delete {
+  background-color: #FFD7D7;
+  color: #FD2D01;
+  border: 1px solid #F5F5F5;
+  border-radius: 0;
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px 20px 8px;
+  font-weight: 600;
+  margin: 10px 0;
 }
 
 .input-l {

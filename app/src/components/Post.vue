@@ -46,15 +46,15 @@ export default {
     props: {
         firstName: {
             type: String,
-            default: "Victor"
+            default: ""
         },
         lastName: {
             type: String,
-            default: "Deweerdt"
+            default: ""
         },
         userPhoto: {
             type: String,
-            default: ""
+            default: "../assets/images/user-photo-vd.jpg"
         },
         createdAt: {
             type: String,
@@ -113,7 +113,6 @@ export default {
 }
 
 #user-photo {
-  background: url(../assets/images/user-photo-vd.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -4,9 +4,9 @@
     <div id="post-zone">
       <Post
 				v-for="post in allPosts"
-				:firstName="post.user_id.firstName"
-				:lastName="post.user_id.lastName"
-				:userPhoto="post.user_id.photo"
+				:firstName="post.User.firstName"
+				:lastName="post.User.lastName"
+				:userPhoto="post.User.photo"
         :createdAt="post.createdAt"
 				:content="post.content"
         :comments="post.comments"
@@ -36,7 +36,7 @@ export default {
         user_id: "",
         createdAt: "",
         content: "",
-        comments: "",
+        comments: [],
         id: ""
       }
     }
@@ -45,7 +45,7 @@ export default {
     if (this.$cookies.isKey("token")) {
       console.log('Token : OK')
     } else {
-      this.$router.push({name: 'Login'});
+      this.$router.push("/signup");
     }
     axios
       .get('http://localhost:3000/api/posts', {
@@ -53,12 +53,21 @@ export default {
       })
       .then((response) => {
         console.log("posts", response.data);
-        this.allPosts = response.data
+        this.allPosts = response.data;
       })
       .catch(error => {
         console.log(error);
       })
-  }
+  },
+  methods: {
+        showUserProfilPicture(profilPicture) {
+            const userPhoto = document.querySelector('#user-photo');
+            userPhoto.style['background-image'] = "url(" + profilPicture + ")";
+            userPhoto.style['background-position'] = "center";
+            userPhoto.style['background-repeat'] = "no repeat";
+            userPhoto.style['background-size'] = "cover";
+        }
+    }
 }
 </script>
 

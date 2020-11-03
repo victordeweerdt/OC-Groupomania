@@ -15,7 +15,7 @@ const commentCtrl = require('../controllers/comments');
 // Puis on crée nos différentes routes liées aux sauces
 // En spécifiant les types de requètes (POST, GET, PUT & DELETE)
 
-router.post('/:id', auth, commentCtrl.createComment);
+router.post(':id/comments', auth, commentCtrl.createComment);
 
 // On exporte le module.
 

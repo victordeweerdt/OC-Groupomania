@@ -20,7 +20,7 @@
     }
 }
 
-.btn-download {
+.btn-update {
     background-color: white;
     color: black;
     border: 1px solid #F5F5F5;
@@ -31,6 +31,20 @@
     align-items: center;
     padding: 15px 20px;
     font-weight: 400;
+}
+
+.btn-delete {
+    background-color: $second-color;
+    color: $main-color;
+    border: 1px solid #F5F5F5;
+    border-radius: 0;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px 8px;
+    font-weight: 600;
+    margin: 10px 0;
 }
 
 .input-l {

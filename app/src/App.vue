@@ -10,8 +10,19 @@
         </div>
       </div>
       <div class="c-4">
-        <div id="account">
-          <router-link to="/account"><div id="user-photo-header"></div></router-link>
+        <div id="account"><router-link to="/account"><div id="user-photo-header"></div></router-link>
+          <!-- <div id="user-photo-header" 
+            @mouseover="show = true" 
+            @mouseleave="show = false" 
+            @keydown.enter="show = !show"
+          ></div>
+          <div class="dropdown__menu"
+            :class="{active: show}"
+            :key="show"
+          >
+            <router-link to="/account"><div class="menu">Mon compte</div></router-link>
+            <div class="menu">Se déconnecter</div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -21,7 +32,15 @@
 
 <script>
 export default {
-  name: "app"
+  name: "app",
+  // data() {
+  //   show: false
+  // },
+  // methods: {
+  //   toggleMenu() {
+  //     this.show = !this.show;
+  //   }
+  // }
 }
 </script>
 
@@ -66,6 +85,26 @@ export default {
       text-transform: uppercase;
     }
   }
+}
+
+.dropdown__menu {
+  top: 100%;
+  right: 0;
+  position: absolute;
+  z-index: 10;
+  // height: 25rem;
+  min-width: 300px;
+  margin-top: 1rem;
+  // overflow-y: auto;
+  padding: 2rem 1rem 2rem 0rem;
+  border-radius: 12px;
+  background-color: white;
+  border: 1px solid var(--color-gray);
+  background-clip: padding-box;
+}
+
+.active {
+  display: block;
 }
 
 #user-photo-header {

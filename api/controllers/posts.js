@@ -45,7 +45,7 @@ exports.createPost = (req, res, next) => {
             attachments: req.body.attachments,
             comments: req.body.comments
         }) // J'enregistre mon post
-        .then(newPost => res.status(201).json( newPost ))
+        .then(newPost => res.status(201).json({ 'newPost': newPost, 'user': user }))
         .catch(error => res.status(400).json({ error }));
     }
 };
@@ -58,7 +58,11 @@ exports.getAllPosts = (req, res, next) => {
     const Posts = db.Posts;
 
     Posts.findAll({
-        order: sequelize.literal('updatedAt DESC')
+        order: sequelize.literal('updatedAt DESC'),
+        include: {
+            model:db.Users,
+            attributes: ['firstName', 'lastName', 'photo']
+        }
     }).then(posts => res.status(200).json( posts ))
     .catch(error => res.status(400).json({ error: "Pas de publications correspondantes.", error: error }))
 };

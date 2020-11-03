@@ -3,7 +3,7 @@
     <div class="user">
       <div id="user-photo"></div>
     </div>
-    <div class="fields">
+    <div class="fields c-12">
                 <input 
                     type="text" 
                     class="input-l" 
@@ -38,11 +38,22 @@
                     ref="photo" 
                     v-on:change="handleFileUpload()"
                 />
-                <button 
-                    type="submit" 
-                    class="btn btn-primary mb-2 btn-download"
-                    @click.prevent="downloadProfilPicture"
-                ><span class="mdi mdi-image"></span>Télécharger un photo de profil</button>
+                <div class="buttons">
+                  <div class="c-12">
+                    <button 
+                      type="submit" 
+                      class="btn btn-primary mb-2 btn-update"
+                      @click.prevent="updateUserInformations"
+                    >Mettre à jour les informations</button>
+                  </div>
+                  <div class="c-12">
+                    <button 
+                      type="submit" 
+                      class="btn btn-primary mb-2 btn-delete"
+                      @click.prevent="deleteUser"
+                    >Supprimer le compte</button>
+                  </div>
+                </div>
             </div>
   </div>
 </template>
@@ -69,7 +80,7 @@ export default {
       if (this.$cookies.isKey("token")) {
       console.log('Token : OK')
     } else {
-      this.$router.push({name: 'Login'});
+      this.$router.push("/login");
     }
       axios
         .get("http://localhost:3000/api/users/me", {
@@ -83,28 +94,13 @@ export default {
 
     methods: {
         updateUserInformations() {
-            if (this.firstName !== null || this.lastName !== null || this.email !== null || this.password !== null) {
-                axios
-                    .post("http://localhost:3000/api/users/signup",
-                        this.dataUser
-                    )
-                    .then(response => {
-                        console.log(response)
-                        window.location.href = '#/login';
-                    })
-                    .catch(error => {
-                        console.log(error.response)
-                    })
-            } else {
-                alert("L'un des champs n'est pas renseigné !");
-            }
-        },
-        downloadProfilPicture() {
           let formData = new FormData();
+          formData.append('email', this.dataUser.email);
+          formData.append('firstName', this.dataUser.firstName);
+          formData.append('lastName', this.dataUser.lastName);
           formData.append('photo', this.dataUser.photo, this.dataUser.photo.name);
-          console.log(this.dataUser.photo.name);
           axios
-            .post('http://localhost:3000/api/users/me',
+            .put('http://localhost:3000/api/users/me',
                   formData,
                   {
                   headers: {
@@ -122,6 +118,20 @@ export default {
         handleFileUpload(){
           this.dataUser.photo = this.$refs.photo.files[0];
         },
+        deleteUser() {
+          const id = this.dataUser.id;
+          axios
+            .delete('http://localhost:3000/api/users/' + id, {
+              headers: { Authorization: "Bearer " + this.cookie }
+            })
+            .then(response => {
+              console.log(response.data);
+              this.$cookies.remove("token");
+              this.$router.push("/signup");
+
+              })
+            .catch(error => console.log(error))
+        },
     },
 };
 </script>
@@ -138,6 +148,22 @@ export default {
   background-color: white;
 }
 
+#photo {
+  border: none;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  flex-wrap: wrap;
+  .c-12 {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 #user-photo {
   background: url(../assets/images/user-photo-vd.jpg);
   background-position: center;
@@ -152,11 +178,14 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 80px;
     background-color: white;
     input {
       border: 1px solid black;
       margin-bottom: 20px;
+    }
+        padding: 0px 25% 10px;
+    @media (max-width:$xl) {
+            padding: 0 80px 200px;
     }
 }
 
