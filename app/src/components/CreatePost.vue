@@ -1,95 +1,87 @@
 <template>
-  <div class="new-post c-6 cm-12">
-    <div class="identity">
-      <div id="user-photo"></div>
-      <div>
-        <p id="user-name">{{ user.firstName }} {{ user.lastName }}</p>
-      </div>
+    <div class="new-post c-6 cm-12">
+        <div class="identity">
+        <img id="user-photo" :src="user.photo">
+        <div>
+            <p id="user-name">{{ user.firstName }} {{ user.lastName }}</p>
+        </div>
+        </div>
+        <form @submit.prevent="createPost">
+        <div class="post-textarea">
+            <textarea 
+                id="post-area" 
+                class="form-control" 
+                v-model="postContent.content" 
+                placeholder="Écrire votre post ici"
+            ></textarea>
+        </div>
+        <div class="new-post-buttons">
+            <div class="c-6 upload-file">
+            <input
+                class="add-image"
+                type="file"
+                id="inputFile"
+                name="inputFile"
+                @change="uploadImage"
+            />
+            </div>
+            <div class="c-6">
+                <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier"/>
+            </div>
+        </div>
+        </form>
     </div>
-    <form @submit.prevent="createPost">
-      <div class="post-textarea">
-        <textarea 
-          id="post-area" 
-          class="form-control" 
-          v-model="postContent.content" 
-          placeholder="Écrire votre post ici"
-        ></textarea>
-      </div>
-      <div class="new-post-buttons">
-        <div class="c-6 upload-file">
-          <input
-            class="add-image"
-            type="file"
-            id="inputFile"
-            name="inputFile"
-            @change="uploadImage"
-          />
-        </div>
-        <div class="c-6">
-          <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier"/>
-        </div>
-      </div>
-    </form>
-  </div>
 
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-  name: 'NewPost',
-  props: {
-    submit: Function
-  },
-  data() {
-    return {
-      cookie: this.$cookies.get("token"),
-      user: "",
-      userPhoto: "",
-      postContent: {
-        content: "",
-        attachments: "",
-        comments: null
-      }
-    }
-  },
-  created() {
-    axios
-      .get('http://localhost:3000/api/users/me', {
-        headers: { 
-          Authorization: "Bearer " + this.cookie }
-      })
-      .then((response) => {
-        this.user = response.data.user;
-        this.showUserProfilPicture(response.data.user.photo);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  },
-  methods: {
-    createPost() {
-      axios
-        .post('http://localhost:3000/api/posts', 
-        this.postContent , {
-          headers: {
-        Authorization: "Bearer " + this.cookie }
+    name: 'NewPost',
+    props: {
+        submit: Function
+    },
+    data() {
+        return {
+        cookie: this.$cookies.get("token"),
+        user: "",
+        userPhoto: "",
+        postContent: {
+            content: "",
+            attachments: "",
+            comments: null
         }
-      )
-      .then(() => this.submit())
-      .catch((error) => console.log(error));
+        }
     },
-    uploadImage() {
-      console.log('Image Téléchargée !')
+    created() {
+        axios
+        .get('http://localhost:3000/api/users/me', {
+            headers: { 
+            Authorization: "Bearer " + this.cookie }
+        })
+        .then((response) => {
+            this.user = response.data.user;
+        })
+        .catch(error => {
+            console.log(error);
+        })
     },
-    showUserProfilPicture(profilPicture) {
-      const userPhoto = document.querySelector('#user-photo');
-      userPhoto.style['background-image'] = "url(" + profilPicture + ")";
-      userPhoto.style['background-position'] = "center";
-      userPhoto.style['background-repeat'] = "no repeat";
-      userPhoto.style['background-size'] = "cover";
+    methods: {
+        createPost() {
+        axios
+            .post('http://localhost:3000/api/posts', 
+            this.postContent , {
+            headers: {
+            Authorization: "Bearer " + this.cookie }
+            }
+        )
+        .then(() => this.submit())
+        .catch((error) => console.log(error));
+        },
+        uploadImage() {
+        console.log('Image Téléchargée !')
+        },
     }
-  }
 }
 </script>
 

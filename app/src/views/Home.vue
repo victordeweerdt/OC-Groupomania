@@ -1,19 +1,19 @@
 <template>
-  <div class="forum">
-    <CreatePost/>
-    <div id="post-zone">
-      <Post
-				v-for="post in allPosts"
-				:firstName="post.User.firstName"
-				:lastName="post.User.lastName"
-				:userPhoto="post.User.photo"
-        :createdAt="post.createdAt"
-				:content="post.content"
-        :comments="post.comments"
-				:key="post.id"
-			/>
+    <div class="forum">
+        <CreatePost/>
+        <div id="post-zone">
+            <Post
+                v-for="post in allPosts"
+                :firstName="post.User.firstName"
+                :lastName="post.User.lastName"
+                :userPhoto="post.User.photo"
+                :createdAt="post.createdAt"
+                :content="post.content"
+                :comments="post.comments"
+                :key="post.id"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -23,50 +23,42 @@ import Post from '@/components/Post.vue'
 import axios from 'axios'
 
 export default {
-  name: 'Home',
-  components: {
-    CreatePost,
-    Post
-  },
-  data() {
-    return {
-      cookie: this.$cookies.get("token"),
-      allPosts: [],
-      post: {
-        user_id: "",
-        createdAt: "",
-        content: "",
-        comments: [],
-        id: ""
-      }
-    }
-  },
-  created() {
-    if (this.$cookies.isKey("token")) {
-      console.log('Token : OK')
-    } else {
-      this.$router.push("/signup");
-    }
-    axios
-      .get('http://localhost:3000/api/posts', {
-        headers: { Authorization: "Bearer " + this.cookie }
-      })
-      .then((response) => {
-        console.log("posts", response.data);
-        this.allPosts = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  },
-  methods: {
-        showUserProfilPicture(profilPicture) {
-            const userPhoto = document.querySelector('#user-photo');
-            userPhoto.style['background-image'] = "url(" + profilPicture + ")";
-            userPhoto.style['background-position'] = "center";
-            userPhoto.style['background-repeat'] = "no repeat";
-            userPhoto.style['background-size'] = "cover";
+    name: 'Home',
+    components: {
+        CreatePost,
+        Post
+    },
+    data() {
+        return {
+        cookie: this.$cookies.get("token"),
+        allPosts: [],
+        post: {
+            user_id: "",
+            createdAt: "",
+            content: "",
+            comments: [],
+            id: "",
+            userPhoto: ""
         }
+        }
+    },
+    created() {
+        if (this.$cookies.isKey("token")) {
+        console.log('Token : OK')
+        } else {
+        this.$router.push("/signup");
+        }
+        axios
+        .get('http://localhost:3000/api/posts', {
+            headers: { Authorization: "Bearer " + this.cookie }
+        })
+        .then((response) => {
+            console.log("posts", response.data);
+            this.allPosts = response.data;
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 }
 </script>
@@ -74,13 +66,13 @@ export default {
 <style scoped lang="scss">
 
 .forum {
-  background-color: white;
+    background-color: white;
 }
 
 #post-zone {
-  background-color: #FAFAFA;
-  min-height: 800px;
-  padding: 1rem 0;
+    background-color: #FAFAFA;
+    min-height: 800px;
+    padding: 1rem 0;
 }
 
 </style>

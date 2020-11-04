@@ -2,7 +2,7 @@
     <div class="post c-6 cm-12">
         <div class="top-post">
             <div class="c-8 user-id">
-                <div id="user-photo"></div>
+                <img id="user-photo" :src="userPhoto">
                 <p class="user-name"> {{ firstName }} {{ lastName }} </p>
             </div>
             <div class="c-4">
@@ -54,7 +54,7 @@ export default {
         },
         userPhoto: {
             type: String,
-            default: "../assets/images/user-photo-vd.jpg"
+            default: ""
         },
         createdAt: {
             type: String,
@@ -113,22 +113,22 @@ export default {
 }
 
 #user-photo {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
 }
 
 .user-photo-comment {
-  background: url(../assets/images/user-photo-vd.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+    background: url(../assets/images/user-photo-vd.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
 }
 
 .post-date {

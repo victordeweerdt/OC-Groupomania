@@ -1,7 +1,7 @@
 <template>
   <div class="account">
     <div class="user">
-      <div id="user-photo"></div>
+      <img id="user-photo" v-bind:src="dataUser.photo">
     </div>
     <div class="fields c-12">
                 <input 
@@ -165,7 +165,6 @@ export default {
 }
 
 #user-photo {
-  background: url(../assets/images/user-photo-vd.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
