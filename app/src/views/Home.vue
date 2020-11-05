@@ -37,8 +37,7 @@ export default {
             createdAt: "",
             content: "",
             comments: [],
-            id: "",
-            userPhoto: ""
+            id: ""
         }
         }
     },

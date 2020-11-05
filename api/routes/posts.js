@@ -19,6 +19,7 @@ router.get('/', auth, postCtrl.getAllPosts);
 router.post('/', auth, postCtrl.createPost);
 router.put('/:id', auth, postCtrl.modifyPost);
 router.delete('/:id', auth, postCtrl.deletePost);
+// router.get('/:id', postCtrl.getOnePost);
 
 // On exporte le module.
 

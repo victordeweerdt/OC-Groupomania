@@ -54,7 +54,7 @@ export default {
         },
         userPhoto: {
             type: String,
-            default: ""
+            default: "../assets/images/userProfil.jpg"
         },
         createdAt: {
             type: String,

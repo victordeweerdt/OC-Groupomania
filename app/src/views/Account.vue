@@ -108,12 +108,23 @@ export default {
                       Authorization: "Bearer " + this.cookie
                   },
                 }
-              ).then(() =>
-                console.log('Image téléchargée !')
-            )
+              ).then(() => {
+                console.log('Image téléchargée !');
+                this.$router.go();
+            })
             .catch(error =>
               console.log(error)
             );
+        },
+        loadUser() {
+          axios
+            .get("http://localhost:3000/api/users/me", {
+              headers: { Authorization: "Bearer " + this.cookie }
+            })
+            .then(response => {
+              console.log(response.data);
+              this.dataUser = response.data.user;
+            })
         },
         handleFileUpload(){
           this.dataUser.photo = this.$refs.photo.files[0];

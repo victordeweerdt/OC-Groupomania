@@ -21,12 +21,33 @@ exports.createComment = (req, res, next) => {
     const userId = decodedToken.userId;
 
     const Comments = db.Comments;
+    const Users = db.Users;
+
+    Users.findOne({
+        where: {
+            id: userId
+        }
+    })
+    .then(user => res.status(200).json( user ))
+    .catch(error => res.status(500).json( error ))
 
     const newComment = Comments.create({
         user_id: userId,
         post_id: req.params.id,
         content: req.body.commentContent
     })
-    .then(newComment => res.status(200).json( newComment ))
+    .then(newComment => res.status(200).json({ 'newComment': newComment, 'user': user }))
     .catch(error => res.status(500).json( error ))
 };
+
+exports.getAllComments = (req, res, next) => {
+    
+    const Comments = db.Comments;
+
+    Comments.findAll({
+        where: {
+            post_id: req.params.id
+        }
+    }).then(comments => res.status(200).json( comments ))
+    .catch(error => res.status(400).json({ error: "Pas de commentaires correspondants.", error: error }))
+}

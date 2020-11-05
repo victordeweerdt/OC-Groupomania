@@ -65,6 +65,9 @@ export default {
         .catch(error => {
             console.log(error);
         })
+        // if (this.user.photo == null) {
+            
+        // }
     },
     methods: {
         createPost() {

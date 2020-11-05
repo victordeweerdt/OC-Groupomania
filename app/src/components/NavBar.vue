@@ -33,7 +33,6 @@ export default {
             Authorization: "Bearer " + this.cookie }
         })
         .then(response => {
-            console.log(response.data);
             this.userPhoto = response.data.user.photo;
         })
         .catch(error => {
