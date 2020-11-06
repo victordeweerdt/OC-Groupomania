@@ -91,6 +91,21 @@ exports.login = (req, res, next) => {
 exports.delete = (req, res, next) => {
 
   const Users = db.Users;
+  const Posts = db.Posts;
+  const Comments = db.Comments;
+
+
+  Comments.destroy({
+    where: {
+      user_id: req.params.id
+    }
+  })
+  
+  Posts.destroy({
+    where: {
+      user_id: req.params.id
+    }
+  })
 
   Users.destroy({ 
     where: { 
