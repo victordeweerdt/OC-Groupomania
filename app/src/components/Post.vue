@@ -13,24 +13,16 @@
             <p class="message-post"> {{ content }}</p>
             <div src="../assets/images/post-image-sonia.jpg" class="media-post"></div>
         </div>
-        <div class="last-comments">
-            <!-- <p class="number-comments"><span id="comments-number">1</span> commentaire</p> -->
-            <div class="comment-bloc">
-                <div class="user-photo-comment" :value="lastCommentUser"></div>
-                <div class="comment-area">
-                    <p class="user-name">{{ lastCommentUserFullName }}</p>
-                    <p>{{ lastCommentText }}</p>
-                </div>
-            </div>
-        </div>
+        <!-- Dernier com -->
+        <slot name="Comments"></slot>
         <div class="commentZone">
-            <form>
+            <form @submit.prevent="postComment">
                 <div class="comment-bloc">
-                    <div class="user-photo-comment"></div>
+                    <img class="user-photo-comment" :src="myUserPhoto">
                     <textarea id="comment-area" class="form-control" placeholder="Écrire votre commentaire ici"></textarea>
                 </div>
                 <div class="bottom-post">
-                    <button id="comment-submit" type="submit" class="btn-med">Publier</button>
+                    <button v-on:click="submitOneComment()" id="comment-submit" type="submit" class="btn-med">Publier</button>
                     <div v-on:click="deletePost(post)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
                 </div>
             </form>
@@ -39,14 +31,15 @@
 </template>
 
 <script>
-
 export default {
     name: 'Post',
     data() {
         return {
-            lastCommentUser: "",
-            lastCommentText: "Super bonne référence",
-            lastCommentUserFullName: "Victor Deweerdt"
+            comments: [],
+            comment: {
+                content: ""
+            },
+            oneComment: ""
         }
     },
     props: {
@@ -60,7 +53,7 @@ export default {
         },
         userPhoto: {
             type: String,
-            default: "../assets/images/userProfil.jpg"
+            default: ""
         },
         createdAt: {
             type: String,
@@ -70,9 +63,9 @@ export default {
             type: String,
             default: "This is my first message !"
         },
-        comments: {
-            type: Array,
-            default: () => []
+        myUserPhoto: {
+            type: String,
+            default:"http://localhost:3000/images/DSC04322-5.jpg1604675737628.jpg"
         },
         post: {
             type: String
@@ -81,6 +74,9 @@ export default {
     methods: {
         deletePost(post) {
             this.$emit('post-deleted', post);
+        },
+        submitOneComment(comment) {
+            this.$emit('submit-comment', comment);
         }
     }
 }
@@ -145,7 +141,6 @@ export default {
 }
 
 .user-photo-comment {
-    background: url(../assets/images/user-photo-vd.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
