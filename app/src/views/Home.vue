@@ -1,6 +1,8 @@
 <template>
     <div class="forum">
-        <CreatePost/>
+        <CreatePost 
+            v-on:load-all-posts="onSubmit()"
+        />
         <div id="post-zone">
             <Post
                 v-for="post in allPosts"
@@ -11,6 +13,7 @@
                 :content="post.content"
                 :comments="post.comments"
                 :key="post.id"
+                v-on:post-deleted="deletePost(post.id)"
             />
         </div>
     </div>
@@ -58,6 +61,38 @@ export default {
         .catch(error => {
             console.log(error);
         })
+    },
+    methods: {
+        deletePost(id) {
+            axios
+                .delete('http://localhost:3000/api/posts/' + id, {
+                    headers: { Authorization: "Bearer " + this.cookie }
+                })
+                .then(response => {
+                    console.log(response)
+                    this.loadPosts();
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+        loadPosts() {
+            axios
+                .get('http://localhost:3000/api/posts', {
+                    headers: { Authorization: "Bearer " + this.cookie }
+                })
+                .then((response) => {
+                    console.log("posts", response.data);
+                    this.allPosts = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        onSubmit() {
+            this.loadPosts();
+            console.log("coucou");
+        }
     }
 }
 </script>

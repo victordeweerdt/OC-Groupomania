@@ -24,16 +24,22 @@
             </div>
         </div>
         <div class="commentZone">
-            <div class="comment-bloc">
-                <div class="user-photo-comment"></div>
-                <textarea id="comment-area" class="form-control" placeholder="Écrire votre commentaire ici"></textarea>
-            </div>
-            <button id="comment-submit" type="submit" class="btn-med">Publier</button>
+            <form>
+                <div class="comment-bloc">
+                    <div class="user-photo-comment"></div>
+                    <textarea id="comment-area" class="form-control" placeholder="Écrire votre commentaire ici"></textarea>
+                </div>
+                <div class="bottom-post">
+                    <button id="comment-submit" type="submit" class="btn-med">Publier</button>
+                    <div v-on:click="deletePost(post)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
+                </div>
+            </form>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'Post',
     data() {
@@ -67,6 +73,14 @@ export default {
         comments: {
             type: Array,
             default: () => []
+        },
+        post: {
+            type: String
+        }
+    },
+    methods: {
+        deletePost(post) {
+            this.$emit('post-deleted', post);
         }
     }
 }
@@ -92,6 +106,15 @@ export default {
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+.bottom-post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .mdi {
+        cursor: pointer;
+    }
 }
 
 .content {

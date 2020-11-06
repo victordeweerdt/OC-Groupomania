@@ -9,8 +9,16 @@
             </div>
         </div>
         <div class="c-4">
-            <div id="account">
-                <router-link to="/account"><img id="user-photo-header" v-bind:src="userPhoto"></router-link>
+            <div id="account" v-if="cookie != null">
+                <div id="toggleAccount">
+                  <img id="user-photo-header" v-bind:src="userPhoto">
+                  <div id="submenu">
+                      <ul>
+                            <li><router-link to="/account"><span class="mdi mdi-account"></span>Informations</router-link></li>
+                            <li><a href="#" class="logOut" @click="logOut()"><span class="mdi mdi-logout"></span>Se déconnecter</a></li>
+                      </ul>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -38,6 +46,16 @@ export default {
         .catch(error => {
             console.log(error);
         })
+        if (this.cookie == null) {
+            const accountLink = document.getElementById('account');
+            accountLink.style.display = "none";
+        }
+    },
+    methods: {
+        logOut() {
+            this.$cookies.remove("token");
+            this.$router.go();
+        }
     }
 }
 </script>
@@ -81,20 +99,40 @@ export default {
   }
 }
 
-.dropdown__menu {
-  top: 100%;
-  right: 0;
-  position: absolute;
-  z-index: 10;
-  // height: 25rem;
-  min-width: 300px;
-  margin-top: 1rem;
-  // overflow-y: auto;
-  padding: 2rem 1rem 2rem 0rem;
-  border-radius: 12px;
-  background-color: white;
-  border: 1px solid var(--color-gray);
-  background-clip: padding-box;
+.logOut {
+    cursor: pointer;
+}
+
+#toggleAccount {
+      overflow: hidden;
+    #submenu {
+            top: 80px;
+            right: 0;
+            position: absolute;
+            z-index: 10;
+            padding: 2rem;
+            border: 1px solid;
+            background-color: white;
+            color: white;
+            display: none;
+            .mdi {
+                padding-right: 5px;
+                top: 2px;
+                position: relative;
+            }
+            li {
+                a {
+                    color: black !important;
+                    font-size: 1rem;
+                }
+                padding: 5px 0;
+            }
+        }
+        &:hover {
+            #submenu {
+                display: block;
+            }
+        }
 }
 
 .active {

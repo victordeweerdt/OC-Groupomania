@@ -17,13 +17,12 @@
         </div>
         <div class="new-post-buttons">
             <div class="c-6 upload-file">
-            <input
-                class="add-image"
-                type="file"
-                id="inputFile"
-                name="inputFile"
-                @change="uploadImage"
-            />
+            <input 
+                    type="file"
+                    id="photo" 
+                    ref="photo" 
+                    v-on:change="handleFileUpload()"
+                />
             </div>
             <div class="c-6">
                 <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier"/>
@@ -70,19 +69,29 @@ export default {
         // }
     },
     methods: {
+        
         createPost() {
-        axios
-            .post('http://localhost:3000/api/posts', 
-            this.postContent , {
-            headers: {
-            Authorization: "Bearer " + this.cookie }
-            }
-        )
-        .then(() => this.submit())
-        .catch((error) => console.log(error));
+            axios
+                .post('http://localhost:3000/api/posts', 
+                this.postContent , {
+                headers: {
+                Authorization: "Bearer " + this.cookie }
+                }
+            )
+            .then(() => this.submit())
+            .catch((error) => console.log(error));
         },
+
         uploadImage() {
         console.log('Image Téléchargée !')
+        },
+
+        loadAllPosts() {
+            this.$emit('load-all-posts');
+        },
+
+        handleFileUpload(){
+          this.dataUser.photo = this.$refs.photo.files[0];
         },
     }
 }

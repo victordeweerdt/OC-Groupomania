@@ -40,6 +40,8 @@ exports.createComment = (req, res, next) => {
     .catch(error => res.status(500).json( error ))
 };
 
+
+
 exports.getAllComments = (req, res, next) => {
     
     const Comments = db.Comments;
@@ -50,4 +52,22 @@ exports.getAllComments = (req, res, next) => {
         }
     }).then(comments => res.status(200).json( comments ))
     .catch(error => res.status(400).json({ error: "Pas de commentaires correspondants.", error: error }))
-}
+};
+
+
+
+exports.deleteComments = (req, res, next) => {
+
+    const Comments = db.Comments;
+
+    Comments.destroy({
+        where: {
+            post_id: req.params.id
+        }
+    })
+    .then(() => res.status(200).json({ message: 'Commentaires supprimés!'}))
+    .catch(error => res.status(500).json( error ))
+
+};
+
+ 
