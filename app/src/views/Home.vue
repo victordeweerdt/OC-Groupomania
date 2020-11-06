@@ -65,6 +65,16 @@ export default {
     methods: {
         deletePost(id) {
             axios
+                .delete('http://localhost:3000/api/posts/' + id + '/comments', {
+                    headers: { Authorization: "Bearer " + this.cookie }
+                })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            axios
                 .delete('http://localhost:3000/api/posts/' + id, {
                     headers: { Authorization: "Bearer " + this.cookie }
                 })
