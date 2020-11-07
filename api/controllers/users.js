@@ -145,7 +145,6 @@ exports.modifyUser = (req, res, next) => {
   const userId = decodedToken.userId;
 
   const Users = db.Users;
-  // Todo Store la photo
   Users.update({ 
     lastName: req.body.lastName,
     firstName: req.body.firstName,

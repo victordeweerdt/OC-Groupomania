@@ -182,6 +182,7 @@ export default {
   width: 100px;
   height: 100px;
   border-radius: 60px;
+  object-fit: cover;
 }
 
 .fields {

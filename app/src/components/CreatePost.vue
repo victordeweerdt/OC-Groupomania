@@ -44,10 +44,10 @@ export default {
         return {
         cookie: this.$cookies.get("token"),
         user: "",
-        userPhoto: "",
+        userPhoto: '',
         postContent: {
-            content: "",
-            attachments: "",
+            content: '',
+            attachments: '',
             comments: null
         }
         }
@@ -71,19 +71,38 @@ export default {
     methods: {
         
         createPost() {
-            axios
-                .post('http://localhost:3000/api/posts', 
-                this.postContent , {
-                headers: {
-                Authorization: "Bearer " + this.cookie }
-                }
-            )
-            .then(() => this.submit())
-            .catch((error) => console.log(error));
+            // if (this.postContent.attachments !== null) {
+            //     let formData = new FormData();
+            //     formData.append('content', this.postContent.content);
+            //     console.log('toto')
+            //     axios
+            //         .post('http://localhost:3000/api/posts', 
+            //             formData , {
+            //             headers: {
+            //             'Content-Type': 'multipart/form-data',
+            //             Authorization: "Bearer " + this.cookie }
+            //             }
+            //         )
+            //         .then(() => this.submit())
+            //         .catch((error) => console.log(error));
+            // } else {
+                let formData = new FormData();
+                formData.append('content', this.postContent.content);
+                formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
+                console.log('titi')
+                axios
+                    .post('http://localhost:3000/api/posts', 
+                        formData , {
+                        headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: "Bearer " + this.cookie }
+                        }
+                    )
+                    .then(() => this.submit())
+                    .catch((error) => console.log(error));
         },
-
         uploadImage() {
-        console.log('Image Téléchargée !')
+            console.log('Image Téléchargée !')
         },
 
         loadAllPosts() {
@@ -91,9 +110,10 @@ export default {
         },
 
         handleFileUpload(){
-          this.dataUser.photo = this.$refs.photo.files[0];
+        this.postContent.attachments = this.$refs.photo.files[0];
         },
-    }
+    },
+
 }
 </script>
 
@@ -108,6 +128,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 50px;
+  object-fit: cover;
 }
 
 .identity {

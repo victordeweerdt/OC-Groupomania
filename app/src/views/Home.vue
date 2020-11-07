@@ -11,6 +11,7 @@
                 :userPhoto="post.User.photo"
                 :createdAt="post.createdAt"
                 :content="post.content"
+                :postPhoto="post.attachments"
                 :key="post.id"
                 v-on:submit-comment="submitComment()"
                 v-on:post-deleted="deletePost(post.id)"
@@ -52,7 +53,8 @@ export default {
                 user_id: "",
                 createdAt: "",
                 content: "",
-                id: ""
+                id: "",
+                attachments: ""
             },
             comments: [],
             comment: {
@@ -150,6 +152,7 @@ export default {
 }
 
 #user-photo {
+    object-fit: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -11,7 +11,7 @@
         </div>
         <div class="content">
             <p class="message-post"> {{ content }}</p>
-            <div src="../assets/images/post-image-sonia.jpg" class="media-post"></div>
+            <img :src="postPhoto" class="media-post">
         </div>
         <!-- Dernier com -->
         <slot name="Comments"></slot>
@@ -69,6 +69,9 @@ export default {
         },
         post: {
             type: String
+        },
+        postPhoto: {
+            type: String
         }
     },
     methods: {
@@ -92,7 +95,8 @@ export default {
     padding: 40px 0;
     background-color: white;
     padding: 25px;
-    border-radius: 40px;
+    border-radius: 0;
+    box-shadow: 0px 2px 3px 0px #EAEAEA;
         @media (max-width: $lg) {
         margin: 30px 40px;
     }
@@ -138,6 +142,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    object-fit: cover;
 }
 
 .user-photo-comment {
@@ -147,6 +152,13 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50px;
+}
+
+.media-post {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
 }
 
 .post-date {

@@ -6,7 +6,7 @@ const router = express.Router();
 // On déclare les middlewares qu'on va utiliser dans ce fichier
 
 const auth = require('../middleware/auth');
-const multer = require('../middleware/multer-config');
+const multer = require('../middleware/multer-config-files');
 
 // On fait le lien avec notre controller
 
@@ -16,7 +16,7 @@ const postCtrl = require('../controllers/posts');
 // En spécifiant les types de requètes (POST, GET, PUT & DELETE)
 
 router.get('/', auth, postCtrl.getAllPosts);
-router.post('/', auth, postCtrl.createPost);
+router.post('/', auth, multer, postCtrl.createPost);
 router.put('/:id', auth, postCtrl.modifyPost);
 router.delete('/:id', auth, postCtrl.deletePost);
 // router.get('/:id', postCtrl.getOnePost);

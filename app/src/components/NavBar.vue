@@ -68,6 +68,9 @@ export default {
   display: flex;
   align-items: center;
   background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
   .back-to-home {
     text-align:left;
@@ -146,6 +149,7 @@ export default {
   width: 50px;
   height: 50px;
   border-radius: 60px;
+  object-fit: cover;
 }
 
 #account {
