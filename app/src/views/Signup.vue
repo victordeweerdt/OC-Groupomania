@@ -97,6 +97,7 @@ export default {
     min-height: 100%;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 100px;
 }
 
 .subtitle {

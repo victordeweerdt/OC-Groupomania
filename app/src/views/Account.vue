@@ -152,6 +152,10 @@ export default {
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
 
+.account {
+  margin-top: 100px;
+}
+
 .user {
   display: flex;
   justify-content: center;

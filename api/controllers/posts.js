@@ -117,12 +117,18 @@ exports.deletePost = (req, res, next) => {
 
     const Posts = db.Posts;
 
-    Posts.destroy({
+    Posts.findOne({
         where: {
             id: req.params.id
         }
+    }).then(post => {
+        const filename = post.attachments.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => { // Je supprimer l'image en lien grâce à la méthode unlink du package fs
+        Posts.destroy({ where: {id: req.params.id} }) // On supprime l'objet
+            .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
+            .catch(error => res.status(400).json({ error }));
+    });
     })
-    .then(() => res.status(200).json({ message: 'Post supprimé!'}))
-    .catch(error => res.status(500).json( error ))
+    .catch(error => res.status(400).json({ error: "Pas de publication correspondante.", error: error }))
 
 };

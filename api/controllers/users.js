@@ -94,6 +94,22 @@ exports.delete = (req, res, next) => {
   const Posts = db.Posts;
   const Comments = db.Comments;
 
+  // Users.findOne({
+  //   where: {
+  //       id: req.params.id
+  //   }
+  // }).then(user => {
+  //     const filename = user.photo.split('/images/')[1];
+  //     fs.unlink(`images/${filename}`, () => { // Je supprimer l'image en lien grâce à la méthode unlink du package fs
+  //     Comments.destroy({ where: {user_id: req.params.id} })
+  //     Posts.destroy({ where: {user_id: req.params.id} })
+  //     Users.destroy({ where: {id: req.params.id} }) // On supprime l'objet
+  //         .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
+  //         .catch(error => res.status(400).json({ error }));
+  // });
+  // })
+  // .catch(() => res.status(400).json({ error: 'ici' }))
+
 
   Comments.destroy({
     where: {

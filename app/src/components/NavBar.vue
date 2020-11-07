@@ -31,7 +31,7 @@ export default {
     data() {
         return {
           cookie: this.$cookies.get("token"),
-            userPhoto: 'http://localhost:3000/images/103809476_2686800248257377_1575430129088627782_n.jpg1604504354117.jpg'
+          userPhoto: ''
         }
     },
     created() {
@@ -56,7 +56,7 @@ export default {
             this.$cookies.remove("token");
             this.$router.go();
         }
-    }
+    },
 }
 </script>
 

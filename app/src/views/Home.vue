@@ -83,8 +83,6 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-        
-        setTimeout(this.showComments(), 1000);
     },
     methods: {
         deletePost(id) {
@@ -137,6 +135,7 @@ export default {
 
 .forum {
     background-color: white;
+    margin-top: 100px;
 }
 
 #post-zone {
