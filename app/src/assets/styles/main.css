@@ -274,7 +274,7 @@ table {
   background-color: #FFEEEE;
   color: #fd2d05;
   border: none;
-  border-radius: 30px;
+  border-radius: 0;
   width: 100%;
   font-size: 1rem;
   padding: 15px 0;
@@ -285,7 +285,7 @@ table {
   background-color: #FFEEEE;
   color: #fd2d05;
   border: none;
-  border-radius: 30px;
+  border-radius: 0;
   font-size: 1rem;
   margin: 15px 0 0;
   padding: 10px 20px 13px;
@@ -298,19 +298,19 @@ p {
 }
 
 h1 {
-  font-size: 5rem;
-  font-weight: 800;
+  font-size: 4rem;
+  font-weight: 500;
 }
 
 @media (max-width: 1400px) {
   h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 }
 
 @media (max-width: 960px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }
 

@@ -6,7 +6,11 @@ const db = require('../models/index.js');
 exports.getAllUsersAdmin = (req, res, next) => {
     const Users = db.Users;
 
-    Users.findAll()
+    Users.findAll({
+        where : {
+            permission: 0
+        }
+    })
         .then(users => res.status(200).json( users ))
         .catch(error => res.status(400).json( error ))
 };

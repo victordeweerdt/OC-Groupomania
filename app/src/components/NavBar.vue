@@ -9,6 +9,9 @@
             </div>
         </div>
         <div class="c-4">
+          <!-- <div class="users-link">
+            <p>Accèder aux utilisateurs</p>
+          </div> -->
             <div id="account" v-if="cookie != null">
                 <div id="toggleAccount">
                   <img id="user-photo-header" v-bind:src="userPhoto">
@@ -64,7 +67,7 @@ export default {
 @import '../assets/styles/main.scss';
 
 #nav {
-  padding: 30px;
+  padding: 30px 80px;
   display: flex;
   align-items: center;
   background-color: white;
@@ -101,6 +104,11 @@ export default {
     }
   }
 }
+
+// .users-link {
+//   display: flex;
+//   justify-content: right;
+// }
 
 .logOut {
     cursor: pointer;

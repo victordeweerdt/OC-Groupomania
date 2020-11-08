@@ -98,7 +98,7 @@ export default {
     border-radius: 0;
     box-shadow: 0px 2px 3px 0px #EAEAEA;
         @media (max-width: $lg) {
-        margin: 30px 40px;
+        margin: 30px 80px;
     }
 }
 

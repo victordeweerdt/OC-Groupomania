@@ -144,7 +144,7 @@ export default {
   margin: 0 auto;
   padding: 40px 0px;
   @media (max-width: $lg) {
-    padding: 40px 40px;
+    padding: 40px 80px;
   }
 }
 
