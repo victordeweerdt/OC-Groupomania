@@ -35,11 +35,12 @@ export default {
     data() {
         return {
           cookie: this.$cookies.get("token"),
-          userPhoto: '../assets/images/userProfil.jpg',
+          userPhoto: '',
           admin: ''
         }
     },
     created() {
+      console.log('test');
         axios
         .get('http://localhost:3000/api/users/me', {
             headers: { 

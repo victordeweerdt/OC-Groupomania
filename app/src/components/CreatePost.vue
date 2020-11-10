@@ -47,7 +47,7 @@ export default {
         userPhoto: '',
         postContent: {
             content: null,
-            attachments: '',
+            attachments: null,
             comments: 'One',
         }
         }
@@ -71,26 +71,11 @@ export default {
     methods: {
         
         createPost() {
-            // if (this.postContent.attachments !== null) {
-            //     let formData = new FormData();
-            //     formData.append('content', this.postContent.content);
-            //     console.log('toto')
-            //     axios
-            //         .post('http://localhost:3000/api/posts', 
-            //             formData , {
-            //             headers: {
-            //             'Content-Type': 'multipart/form-data',
-            //             Authorization: "Bearer " + this.cookie }
-            //             }
-            //         )
-            //         .then(() => this.submit())
-            //         .catch((error) => console.log(error));
-            // } else {
+            if (this.postContent.attachments !== null) {
                 let formData = new FormData();
                 formData.append('content', this.postContent.content);
-                console.log(this.postContent.attachments);
-                if (this.postContent.attachments !== null || this.postContent.attachments.length !== 0 || this.postContent.attachments !== undefined) {
-                formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name); }
+                formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
+                console.log('toto')
                 axios
                     .post('http://localhost:3000/api/posts', 
                         formData , {
@@ -99,8 +84,32 @@ export default {
                         Authorization: "Bearer " + this.cookie }
                         }
                     )
-                    .then(() => this.submit())
-                    .catch((error) => console.log(error));
+                    .then(response => {
+                        console.log(response)
+                        })
+                    .catch(error => {
+                        console.log(error)
+                        });
+            } else {
+                console.log(this.postContent.content);
+                let formData = new FormData();
+                formData.append('content', this.postContent.content);
+                console.log('titi')
+                axios
+                    .post('http://localhost:3000/api/posts', 
+                        formData , {
+                        headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: "Bearer " + this.cookie }
+                        }
+                    )
+                    .then(response => {
+                        console.log(response)
+                        })
+                    .catch(error => {
+                        console.log(error)
+                        });
+            }
         },
         uploadImage() {
             console.log('Image Téléchargée !')

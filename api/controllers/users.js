@@ -37,7 +37,7 @@ exports.signup = (req, res, next) => {
             email: email,
             password: hash,
             permission: false,
-            photo: null
+            photo: "http://localhost:3000/images/userProfil.jpg1604999623448.jpg"
         });
 
         user.save() // J'enregistre mon utilisateur

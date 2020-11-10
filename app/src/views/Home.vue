@@ -78,6 +78,8 @@ export default {
             .then((response) => {
                 console.log("posts", response.data);
                 this.allPosts = response.data;
+                this.comments = response.data.Comments;
+                console.log(this.comments);
 
             })
             .catch(error => {
@@ -125,6 +127,7 @@ export default {
                 })
         },
         onSubmit() {
+            console.log('tit');
             this.loadPosts();
         },
         submitComment() {
