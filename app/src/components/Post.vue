@@ -6,7 +6,7 @@
                 <p class="user-name"> {{ firstName }} {{ lastName }} </p>
             </div>
             <div class="c-4">
-                <p class="post-date"> Il y a {{ createdAt }}.</p>
+                <p class="post-date">{{ createdAt | moment("ddd, hA") }}</p>
             </div>
         </div>
         <div class="content">

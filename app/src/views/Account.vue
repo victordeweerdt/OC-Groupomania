@@ -36,7 +36,7 @@
                     type="file" 
                     id="photo" 
                     ref="photo" 
-                    v-on:change="handleFileUpload()"
+                    v-on:change.prevent="handleFileUpload()"
                 />
                 <div class="buttons">
                   <div class="c-12">
@@ -130,18 +130,31 @@ export default {
           this.dataUser.photo = this.$refs.photo.files[0];
         },
         deleteUser() {
-          const id = this.dataUser.id;
-          axios
-            .delete('http://localhost:3000/api/users/' + id, {
-              headers: { Authorization: "Bearer " + this.cookie }
-            })
-            .then(response => {
-              console.log(response.data);
-              this.$cookies.remove("token");
-              this.$router.push("/signup");
+          this.$confirm(
+            {
+                message: `Êtes-vous sur de vouloir supprimer votre compte ?`,
+                button: {
+                    no: 'No',
+                    yes: 'Yes'
+                },
+                callback: confirm => {
+                    if (confirm) {
+                    const id = this.dataUser.id;
+                    axios
+                        .delete('http://localhost:3000/api/users/' + id, {
+                        headers: { Authorization: "Bearer " + this.cookie }
+                        })
+                        .then(response => {
+                        console.log(response.data);
+                        this.$cookies.remove("token");
+                        this.$router.push("/signup");
 
-              })
-            .catch(error => console.log(error))
+                        })
+                        .catch(error => console.log(error))
+                    }
+                }
+            }
+          )
         },
     },
 };

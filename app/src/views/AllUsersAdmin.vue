@@ -64,27 +64,53 @@ export default {
     },
     methods: {
         deleteUser(id) {
-            axios
-                .delete('http://localhost:3000/api/admin/users/' + id, {
-                    headers: { Authorization: "Bearer " + this.cookie }
-                })
-                .then(() => console.log({message : 'Utilisateur supprimé !'}))
-                .catch(error => console.log(error))
-            this.$router.go();
+            this.$confirm(
+                {
+                    message: `Êtes-vous sur de vouloir supprimer ce compte ?`,
+                    button: {
+                        no: 'No',
+                        yes: 'Yes'
+                    },
+                    callback: confirm => {
+                        if (confirm) {
+                            axios
+                                .delete('http://localhost:3000/api/admin/users/' + id, {
+                                    headers: { Authorization: "Bearer " + this.cookie }
+                                })
+                                .then(() => console.log({message : 'Utilisateur supprimé !'}))
+                                .catch(error => console.log(error))
+                            this.$router.go();
+                        }
+                    }
+                }
+            )
         },
         updateUser(id) {
-            let formData = new FormData();
-            formData.append('email', this.user.email);
-            formData.append('firstName', this.user.firstName);
-            formData.append('lastName', this.user.lastName);
-            formData.append('photo', this.user.permission);
-            axios
-                .put('http://localhost:3000/api/admin/users/' + id, formData, {
-                    headers: { Authorization: "Bearer " + this.cookie }
-                })
-                .then(() => console.log({message : 'Utilisateur modifié !'}))
-                .catch(error => console.log(error))
-            this.$router.go();
+            this.$confirm(
+                {
+                    message: `Attention ! Si vous modifiez la permission de cet utilisateur, vous ne pourrez plus y accéder. Les admins n'ont accès qu'aux non-admins. Continuer ?`,
+                    button: {
+                        no: 'No',
+                        yes: 'Yes'
+                    },
+                    callback: confirm => {
+                        if (confirm) {
+                            let formData = new FormData();
+                            formData.append('email', this.user.email);
+                            formData.append('firstName', this.user.firstName);
+                            formData.append('lastName', this.user.lastName);
+                            formData.append('photo', this.user.permission);
+                            axios
+                                .put('http://localhost:3000/api/admin/users/' + id, formData, {
+                                    headers: { Authorization: "Bearer " + this.cookie }
+                                })
+                                .then(() => console.log({message : 'Utilisateur modifié !'}))
+                                .catch(error => console.log(error))
+                            this.$router.go();
+                        }
+                    }
+                }
+            )
         }
 
     }
@@ -104,7 +130,7 @@ export default {
 .title {
     padding: 100px 0 50px 25%;
     @media (max-width:$xl) {
-        padding: 100px 80px 50px;
+        padding: 100px 80px 100px;
     }
 }
 
@@ -119,7 +145,7 @@ export default {
     background-color: #FAFAFA;
     padding: 100px 25% 80px;
     @media (max-width:$xl) {
-        padding: 100px 80px 100px;
+        padding: 80px 80px 100px;
     }
 }
 

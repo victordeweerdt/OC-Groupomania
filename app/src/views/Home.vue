@@ -86,27 +86,30 @@ export default {
     },
     methods: {
         deletePost(id) {
-            axios
-                .delete('http://localhost:3000/api/posts/' + id + '/comments', {
-                    headers: { Authorization: "Bearer " + this.cookie }
-                })
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-            axios
-                .delete('http://localhost:3000/api/posts/' + id, {
-                    headers: { Authorization: "Bearer " + this.cookie }
-                })
-                .then(response => {
-                    console.log(response)
-                    this.loadPosts();
-                })
-                .catch(error => {
-                    console.log(error)
-                })
+            this.$confirm(
+                {
+                    message: `Supprimer cette publication ?`,
+                    button: {
+                        no: 'Non',
+                        yes: 'Oui'
+                    },
+                    callback: confirm => {
+                        if (confirm) {
+                            axios
+                                .delete('http://localhost:3000/api/posts/' + id, {
+                                    headers: { Authorization: "Bearer " + this.cookie }
+                                })
+                                .then(response => {
+                                    console.log(response)
+                                    this.loadPosts();
+                                })
+                                .catch(error => {
+                                    window.alert(error);
+                                })
+                        }
+                    }
+                }
+            )
         },
         loadPosts() {
             axios
@@ -122,7 +125,7 @@ export default {
                 })
         },
         onSubmit() {
-            this.$router.go();
+            this.loadPosts();
         },
         submitComment() {
             console.log('hello');

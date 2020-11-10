@@ -144,7 +144,7 @@ exports.getOneUser = (req, res, next) => {
   const Users = db.Users;
 
   Users.findOne({ 
-    attributes: [ 'id', 'firstName', 'lastName', 'email', 'photo' ],
+    attributes: [ 'id', 'firstName', 'lastName', 'email', 'photo', 'permission' ],
     where: { id: userId },
   })
   .then((user) => res.status(200).json({ user }))

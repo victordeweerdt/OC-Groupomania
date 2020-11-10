@@ -18,6 +18,7 @@
                   <div id="submenu">
                       <ul>
                             <li><router-link to="/account"><span class="mdi mdi-account"></span>Informations</router-link></li>
+                            <li v-if="admin == 1"><router-link to="/allusersadmin"><span class="mdi mdi-account-group"></span>Tous les utilisateurs</router-link></li>
                             <li><a href="#" class="logOut" @click="logOut()"><span class="mdi mdi-logout"></span>Se déconnecter</a></li>
                       </ul>
                   </div>
@@ -34,7 +35,8 @@ export default {
     data() {
         return {
           cookie: this.$cookies.get("token"),
-          userPhoto: ''
+          userPhoto: '../assets/images/userProfil.jpg',
+          admin: ''
         }
     },
     created() {
@@ -45,6 +47,7 @@ export default {
         })
         .then(response => {
             this.userPhoto = response.data.user.photo;
+            this.admin = response.data.user.permission;
         })
         .catch(error => {
             console.log(error);
@@ -56,8 +59,20 @@ export default {
     },
     methods: {
         logOut() {
-            this.$cookies.remove("token");
-            this.$router.go();
+          this.$confirm(
+            {
+                message: `Êtes-vous sûr de vous déconnecter ?`,
+                button: {
+                    no: 'No',
+                    yes: 'Yes'
+                },
+                callback: confirm => {
+                    if (confirm) {
+                      this.$cookies.remove("token");
+                      this.$router.go();
+                    }
+                }
+            })
         }
     },
 }

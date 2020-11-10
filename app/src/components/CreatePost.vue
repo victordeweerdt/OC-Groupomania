@@ -46,9 +46,9 @@ export default {
         user: "",
         userPhoto: '',
         postContent: {
-            content: '',
+            content: null,
             attachments: '',
-            comments: null
+            comments: 'One',
         }
         }
     },
@@ -88,8 +88,9 @@ export default {
             // } else {
                 let formData = new FormData();
                 formData.append('content', this.postContent.content);
-                formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
-                console.log('titi')
+                console.log(this.postContent.attachments);
+                if (this.postContent.attachments !== null || this.postContent.attachments.length !== 0 || this.postContent.attachments !== undefined) {
+                formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name); }
                 axios
                     .post('http://localhost:3000/api/posts', 
                         formData , {
@@ -150,7 +151,7 @@ export default {
 
 #post-area {
   width: 100%;
-  padding: 1rem 0;
+  padding: 30px 0;
   border: none;
   font-family: neue-haas-unica, sans-serif;
   font-weight: 400;

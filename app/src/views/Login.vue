@@ -25,11 +25,13 @@
                     id="password-input" 
                     placeholder="Votre mot de passe"
                     v-model="dataUser.password"
+                    v-on:keyup.enter="submitLogin"
                 />
                 <button 
                     type="submit" 
                     class="btn btn-primary mb-2 btn-submit"
                     @click.prevent="submitLogin"
+                    v-on:keyup.enter="submitLogin"
                 ><span class="mdi mdi-arrow-right"></span></button>
             </div>
         </div>

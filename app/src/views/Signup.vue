@@ -39,6 +39,7 @@
                     id="password-input" 
                     placeholder="Votre mot de passe"
                     v-model="dataUser.password"
+                    v-on:keyup.enter="submitSignup"
                 />
                 <button 
                     type="submit" 
@@ -84,7 +85,7 @@ export default {
             } else {
                 alert("L'un des champs n'est pas renseigné !");
             }
-        }
+        },
     },
 };
 </script>
