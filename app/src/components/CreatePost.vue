@@ -25,7 +25,7 @@
                 />
             </div>
             <div class="c-6">
-                <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier"/>
+                <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier" v-on:click="loadAllPosts()"/>
             </div>
         </div>
         </form>
@@ -42,14 +42,14 @@ export default {
     },
     data() {
         return {
-        cookie: this.$cookies.get("token"),
-        user: "",
-        userPhoto: '',
-        postContent: {
-            content: null,
-            attachments: null,
-            comments: 'One',
-        }
+            cookie: this.$cookies.get("token"),
+            user: "",
+            userPhoto: '',
+            postContent: {
+                content: null,
+                attachments: null,
+                comments: 'One',
+            }
         }
     },
     created() {
@@ -75,7 +75,7 @@ export default {
                 let formData = new FormData();
                 formData.append('content', this.postContent.content);
                 formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
-                console.log('toto')
+                console.log('content with attachments')
                 axios
                     .post('http://localhost:3000/api/posts', 
                         formData , {
@@ -91,10 +91,9 @@ export default {
                         console.log(error)
                         });
             } else {
-                console.log(this.postContent.content);
                 let formData = new FormData();
                 formData.append('content', this.postContent.content);
-                console.log('titi')
+                console.log('content')
                 axios
                     .post('http://localhost:3000/api/posts', 
                         formData , {

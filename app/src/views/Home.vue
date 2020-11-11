@@ -141,7 +141,7 @@ export default {
         },
         onSubmit() {
             console.log('tit');
-            this.loadPosts();
+            this.$router.go();
         },
         submitComment() {
             console.log('hello');
