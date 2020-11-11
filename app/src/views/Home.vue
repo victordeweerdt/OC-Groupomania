@@ -16,13 +16,15 @@
                 v-on:submit-comment="submitComment()"
                 v-on:post-deleted="deletePost(post.id)"
             >
-            <template v-slot:Comments v-if="comment.content !== null">
+            <template v-slot:Comments v-if="post.Comments !== null">
                 <div class="last-comments">
                     <!-- <p class="number-comments"><span id="comments-number">1</span> commentaire</p> -->
-                    <div class="comment-bloc">
-                        <img class="user-photo-comment" :src="comment.userPhoto">
+                    <div class="comment-bloc"
+                        v-for="comment in post.Comments"
+                        v-bind:key="comment.id">
+                        <img class="user-photo-comment" :src="comment.user_id">
                         <div class="comment-area">
-                            <p class="user-name">{{ comment.firstName }} {{ comment.lastName }}</p>
+                            <p class="user-name">{{ comment.user_id }} {{ comment.user_id }}</p>
                             <p>{{ comment.content }}</p>
                         </div>
                     </div>
@@ -54,9 +56,9 @@ export default {
                 createdAt: "",
                 content: "",
                 id: "",
-                attachments: ""
+                attachments: "",
+                Comments: []
             },
-            comments: [],
             comment: {
                 firstName: "Victor",
                 lastName: "Deweerdt",
@@ -78,8 +80,6 @@ export default {
             .then((response) => {
                 console.log("posts", response.data);
                 this.allPosts = response.data;
-                this.comments = response.data.Comments;
-                console.log(this.comments);
 
             })
             .catch(error => {

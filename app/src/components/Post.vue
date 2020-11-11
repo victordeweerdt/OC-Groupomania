@@ -201,6 +201,7 @@ export default {
         background-color: #FAFAFA;
         margin-left: 20px;
         padding: 10px 20px;
+        border-radius: 30px;
         .user-name {
             padding: 0 0 5px;
         }
