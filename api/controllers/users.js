@@ -111,17 +111,17 @@ exports.delete = (req, res, next) => {
   // .catch(() => res.status(400).json({ error: 'ici' }))
 
 
-  Comments.destroy({
-    where: {
-      user_id: req.params.id
-    }
-  })
+  // Comments.destroy({
+  //   where: {
+  //     user_id: req.params.id
+  //   }
+  // })
   
-  Posts.destroy({
-    where: {
-      user_id: req.params.id
-    }
-  })
+  // Posts.destroy({
+  //   where: {
+  //     user_id: req.params.id
+  //   }
+  // })
 
   Users.destroy({ 
     where: { 

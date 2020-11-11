@@ -14,12 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       models.Users.hasMany(models.Posts, {
         foreignKey: {
           name: 'user_id'
-        }
+        },
+        onDelete: 'cascade',
+        hooks:true
       });
       models.Users.hasMany(models.Comments, {
         foreignKey: {
           name: 'user_id'
-        }
+        },
+        onDelete: 'cascade',
+        hooks:true
       });
     }
   };
