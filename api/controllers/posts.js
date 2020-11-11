@@ -68,17 +68,24 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 
-// exports.getOnePost = (req, res, next) => {
+exports.getOnePost = (req, res, next) => {
     
-//     const Posts = db.Posts;
+    const Posts = db.Posts;
 
-//     Posts.findOne({
-//         where: {
-//             id: req.params.id
-//         }
-//     }).then(post => res.status(200).json( post ))
-//     .catch(error => res.status(400).json({ error: "Pas de publication correspondante.", error: error }))
-// };
+    Posts.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [ {
+            model:db.Users,
+            attributes: ['firstName', 'lastName', 'photo']
+        }, {
+            model:db.Comments,
+            attributes: ['content', 'user_id']
+        } ]
+    }).then(post => res.status(200).json( post ))
+    .catch(error => res.status(400).json({ error: "Pas de publication correspondante.", error: error }))
+};
 
 
 

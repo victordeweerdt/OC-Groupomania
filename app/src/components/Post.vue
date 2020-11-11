@@ -15,23 +15,7 @@
         </div>
         <!-- Dernier com -->
         <slot name="Comments"></slot>
-        <div class="commentZone">
-            <form>
-                <div class="comment-bloc">
-                    <img class="user-photo-comment" :src="myUserPhoto">
-                    <textarea 
-                        id="comment-area" 
-                        class="form-control"
-                        v-model="newCommentContent" 
-                        placeholder="Écrire votre commentaire ici"
-                    ></textarea>
-                </div>
-                <div class="bottom-post">
-                    <button v-on:click="submitOneComment(newComment, postId)" id="comment-submit" type="submit" class="btn-med">Publier</button>
-                    <div v-on:click="deletePost(postId)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
-                </div>
-            </form>
-        </div>
+        <slot name="lastCommentZone"></slot>
     </div>
 </template>
 
@@ -77,14 +61,6 @@ export default {
             type: String
         }
     },
-    methods: {
-        deletePost(postId) {
-            this.$emit('post-deleted', postId);
-        },
-        submitOneComment(newCommentContent, postId) {
-            this.$emit('submit-comment', newCommentContent, postId);
-        }
-    }
 }
 </script>
 
@@ -124,31 +100,7 @@ export default {
     width: 100%;
 }
 
-.commentZone {
-    width: 100%;
-    .number-comments {
-        font-size: 0.9rem;
-        padding: 20px 0;
-    }
-}
-
-.comment-bloc {
-    display: flex;
-    margin: 15px 0;
-    width: 100%;
-}
-
 #user-photo {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    object-fit: cover;
-}
-
-.user-photo-comment {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -181,20 +133,6 @@ export default {
 .user-name {
     font-size: 0.9rem;
     padding: 10px 20px;
-}
-
-#comment-area {
-    margin-left: 20px;
-    width: calc(100% - 70px);
-    border-radius: 40px;
-    min-height: 50px;
-    padding: 10px 20px;
-    height: 40px;
-    background-color: #FAFAFA;
-    border: none;
-    &:focus {
-        height: auto;
-    }
 }
 
 .last-comments {

@@ -32,7 +32,7 @@ exports.createComment = (req, res, next) => {
         Comments.create({
             user_id: user.id,
             post_id: req.params.id,
-            content: req.body.commentContent
+            content: req.body.content
         })
         .then(newComment => res.status(200).json( newComment ))
         .catch(error => res.status(500).json( error ))

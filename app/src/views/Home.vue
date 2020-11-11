@@ -12,10 +12,7 @@
                 :createdAt="post.createdAt"
                 :content="post.content"
                 :postPhoto="post.attachments"
-                :myUserPhoto="user.photo"
                 :key="post.id"
-                v-on:submit-comment="submitComment(newComment.content, post.id)"
-                v-on:post-deleted="deletePost(post.id)"
             >
             <template v-slot:Comments v-if="post.Comments !== null">
                 <div class="last-comments">
@@ -29,6 +26,25 @@
                             <p>{{ comment.content }}</p>
                         </div>
                     </div>
+                </div>
+            </template>
+            <template v-slot:lastCommentZone>
+                <div class="commentZone">
+                    <form>
+                        <div class="comment-bloc">
+                            <img class="user-photo-comment" :src="user.photo">
+                            <textarea 
+                                id="comment-area" 
+                                class="form-control"
+                                v-model="newComment.content" 
+                                placeholder="Écrire votre commentaire ici"
+                            ></textarea>
+                        </div>
+                        <div class="bottom-post">
+                            <button v-on:click="submitComment(post.id)" id="comment-submit" type="submit" class="btn-med">Publier</button>
+                            <div v-on:click="deletePost(post.id)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
+                        </div>
+                    </form>
                 </div>
             </template>
             </Post>
@@ -61,7 +77,7 @@ export default {
                 Comments: []
             },
             comment: {
-                content: null,
+                content: '',
                 user_id: ''
             },
             newComment: {
@@ -141,21 +157,21 @@ export default {
                 })
         },
         onSubmit() {
-            console.log('tit');
             this.$router.go();
         },
-        submitComment(newComment, post) {
-            let formData = new FormData();
-            console.log(newComment);
-            console.log(post);
-            const postId = post.id;
-            formData.append('commentContent', newComment.content);
+        submitComment(postId) {
+            const comment = this.newComment;
+            console.log(comment);
             axios
                 .post('http://localhost:3000/api/posts/' + postId + '/comments', 
-                formData, {
-                    headers: { Authorization: "Bearer " + this.cookie }
+                comment, {
+                    headers: {
+                        Authorization: "Bearer " + this.cookie }
                 })
-                .then(response => console.log(response))
+                .then(response => {
+                    console.log(response);
+                    this.$router.go();
+                })
                 .catch(error => console.log(error))
         },
     }
@@ -227,6 +243,22 @@ export default {
     }
 }
 
+.comment-bloc {
+    display: flex;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.user-photo-comment {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
 .last-comments {
     display: flex;
     width: 100%;
@@ -238,6 +270,28 @@ export default {
         .user-name {
             padding: 0 0 5px;
         }
+    }
+}
+
+#comment-area {
+    margin-left: 20px;
+    width: calc(100% - 70px);
+    border-radius: 40px;
+    min-height: 50px;
+    padding: 10px 20px;
+    height: 40px;
+    background-color: #FAFAFA;
+    border: none;
+    &:focus {
+        height: auto;
+    }
+}
+
+.commentZone {
+    width: 100%;
+    .number-comments {
+        font-size: 0.9rem;
+        padding: 20px 0;
     }
 }
 
