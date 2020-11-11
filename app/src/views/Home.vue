@@ -12,6 +12,7 @@
                 :createdAt="post.createdAt"
                 :content="post.content"
                 :postPhoto="post.attachments"
+                :myUserPhoto="user.photo"
                 :key="post.id"
                 v-on:submit-comment="submitComment()"
                 v-on:post-deleted="deletePost(post.id)"
@@ -65,6 +66,9 @@ export default {
                 content: null,
                 userPhoto: ""
             },
+            user: {
+                photo: ''
+            }
         }
     },
     created() {
@@ -85,6 +89,15 @@ export default {
             .catch(error => {
                 console.log(error);
             });
+        axios
+            .get('http://localhost:3000/api/users/me', {
+                headers: { Authorization: "Bearer " + this.cookie }
+            })
+            .then(response => {
+                this.user = response.data.user;
+                console.log(this.user);
+            })
+            .catch(error => console.log(error))
     },
     methods: {
         deletePost(id) {
@@ -173,6 +186,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    object-fit: cover;
 }
 
 .message-post {

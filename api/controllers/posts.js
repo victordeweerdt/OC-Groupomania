@@ -61,7 +61,7 @@ exports.getAllPosts = (req, res, next) => {
             attributes: ['firstName', 'lastName', 'photo']
         }, {
             model:db.Comments,
-            attributes: ['content']
+            attributes: ['content', 'user_id']
         } ]
     }).then(posts => res.status(200).json( posts ))
     .catch(error => res.status(400).json({ error: "Pas de publications correspondantes.", error: error }))

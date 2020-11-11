@@ -65,7 +65,7 @@ export default {
         },
         myUserPhoto: {
             type: String,
-            default:"http://localhost:3000/images/DSC04322-5.jpg1604675737628.jpg"
+            default:""
         },
         post: {
             type: String
@@ -131,7 +131,7 @@ export default {
 
 .comment-bloc {
     display: flex;
-    margin: 10px 0;
+    margin: 15px 0;
     width: 100%;
 }
 
@@ -152,6 +152,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    object-fit: cover;
 }
 
 .media-post {
