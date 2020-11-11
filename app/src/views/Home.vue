@@ -14,7 +14,7 @@
                 :postPhoto="post.attachments"
                 :myUserPhoto="user.photo"
                 :key="post.id"
-                v-on:submit-comment="submitComment()"
+                v-on:submit-comment="submitComment(newComment.content, post.id)"
                 v-on:post-deleted="deletePost(post.id)"
             >
             <template v-slot:Comments v-if="post.Comments !== null">
@@ -61,10 +61,11 @@ export default {
                 Comments: []
             },
             comment: {
-                firstName: "Victor",
-                lastName: "Deweerdt",
                 content: null,
-                userPhoto: ""
+                user_id: ''
+            },
+            newComment: {
+                content: ''
             },
             user: {
                 photo: ''
@@ -143,9 +144,20 @@ export default {
             console.log('tit');
             this.$router.go();
         },
-        submitComment() {
-            console.log('hello');
-        }
+        submitComment(newComment, post) {
+            let formData = new FormData();
+            console.log(newComment);
+            console.log(post);
+            const postId = post.id;
+            formData.append('commentContent', newComment.content);
+            axios
+                .post('http://localhost:3000/api/posts/' + postId + '/comments', 
+                formData, {
+                    headers: { Authorization: "Bearer " + this.cookie }
+                })
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
+        },
     }
 }
 </script>

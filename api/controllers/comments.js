@@ -28,15 +28,15 @@ exports.createComment = (req, res, next) => {
             id: userId
         }
     })
-    .then(user => res.status(200).json( user ))
-    .catch(error => res.status(500).json( error ))
-
-    const newComment = Comments.create({
-        user_id: userId,
-        post_id: req.params.id,
-        content: req.body.commentContent
+    .then(user => {
+        Comments.create({
+            user_id: user.id,
+            post_id: req.params.id,
+            content: req.body.commentContent
+        })
+        .then(newComment => res.status(200).json( newComment ))
+        .catch(error => res.status(500).json( error ))
     })
-    .then(newComment => res.status(200).json({ 'newComment': newComment, 'user': user }))
     .catch(error => res.status(500).json( error ))
 };
 

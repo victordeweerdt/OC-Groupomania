@@ -16,14 +16,19 @@
         <!-- Dernier com -->
         <slot name="Comments"></slot>
         <div class="commentZone">
-            <form @submit.prevent="postComment">
+            <form>
                 <div class="comment-bloc">
                     <img class="user-photo-comment" :src="myUserPhoto">
-                    <textarea id="comment-area" class="form-control" placeholder="Écrire votre commentaire ici"></textarea>
+                    <textarea 
+                        id="comment-area" 
+                        class="form-control"
+                        v-model="newCommentContent" 
+                        placeholder="Écrire votre commentaire ici"
+                    ></textarea>
                 </div>
                 <div class="bottom-post">
-                    <button v-on:click="submitOneComment()" id="comment-submit" type="submit" class="btn-med">Publier</button>
-                    <div v-on:click="deletePost(post)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
+                    <button v-on:click="submitOneComment(newComment, postId)" id="comment-submit" type="submit" class="btn-med">Publier</button>
+                    <div v-on:click="deletePost(postId)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
                 </div>
             </form>
         </div>
@@ -35,11 +40,6 @@ export default {
     name: 'Post',
     data() {
         return {
-            comments: [],
-            comment: {
-                content: ""
-            },
-            oneComment: ""
         }
     },
     props: {
@@ -67,19 +67,22 @@ export default {
             type: String,
             default:""
         },
-        post: {
+        postId: {
             type: String
         },
         postPhoto: {
             type: String
+        },
+        newCommentContent: {
+            type: String
         }
     },
     methods: {
-        deletePost(post) {
-            this.$emit('post-deleted', post);
+        deletePost(postId) {
+            this.$emit('post-deleted', postId);
         },
-        submitOneComment(comment) {
-            this.$emit('submit-comment', comment);
+        submitOneComment(newCommentContent, postId) {
+            this.$emit('submit-comment', newCommentContent, postId);
         }
     }
 }
@@ -197,6 +200,7 @@ export default {
 .last-comments {
     display: flex;
     width: 100%;
+    flex-direction: column;
     .comment-area {
         width: calc(100% - 70px);
         background-color: #FAFAFA;
