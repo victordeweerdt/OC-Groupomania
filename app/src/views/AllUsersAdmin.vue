@@ -11,11 +11,17 @@
             :firstName="user.firstName"
             :lastName="user.lastName"
             :email="user.email"
-            :permission="user.permission"
             v-on:user-deleted="deleteUser(user.id)"
-            v-on:user-updated="updateUser(user.id)"
+            v-on:user-updated="updateUser(user.id, user)"
             :key="user.id"
-            />
+            >
+            <template v-slot:Permission>
+                <select name="permission" id="permission-select" v-model="user.permission">
+                    <option value="">false</option>
+                    <option value="1">true</option>
+                </select>
+            </template>
+            </UserItem>
         </div>
     </div>
 </template>
@@ -39,7 +45,7 @@ export default {
                 lastName: 'Deweerdt',
                 photo: 'http://localhost:3000/images/DSC04282.jpg1604754621573.jpg',
                 email: 'vdeweerdt@groupomania.com',
-                permission: ''
+                permission: false
             }
 
         }
@@ -85,7 +91,7 @@ export default {
                 }
             )
         },
-        updateUser(id) {
+        updateUser(id, user) {
             this.$confirm(
                 {
                     message: `Attention ! Si vous modifiez la permission de cet utilisateur, vous ne pourrez plus y accéder. Les admins n'ont accès qu'aux non-admins. Continuer ?`,
@@ -95,19 +101,16 @@ export default {
                     },
                     callback: confirm => {
                         if (confirm) {
-                            let formData = new FormData();
-                            formData.append('email', this.user.email);
-                            formData.append('firstName', this.user.firstName);
-                            formData.append('lastName', this.user.lastName);
-                            formData.append('photo', this.user.permission);
-                            axios
-                                .put('http://localhost:3000/api/admin/users/' + id, formData, {
-                                    headers: { Authorization: "Bearer " + this.cookie }
-                                })
-                                .then(() => console.log({message : 'Utilisateur modifié !'}))
-                                .catch(error => console.log(error))
-                            this.$router.go();
-                        }
+                            console.log(user);
+                                axios
+                                    .put('http://localhost:3000/api/admin/users/' + id, user, {
+                                        headers: { 
+                                            Authorization: "Bearer " + this.cookie }
+                                    })
+                                    .then(() => console.log({message : 'Utilisateur modifié !'}))
+                                    .catch(error => console.log(error))
+                                this.$router.go();
+                            }
                     }
                 }
             )
@@ -146,6 +149,26 @@ export default {
     padding: 100px 25% 80px;
     @media (max-width:$xl) {
         padding: 80px 80px 100px;
+    }
+}
+
+#permission-select {
+    width: 100px;
+    height: 60px;
+    padding-left: 20px;
+    appearance: none;
+    background-image: url('../assets/ic_arrow_drop_down_24px.svg');
+    background-repeat: no-repeat;
+    background-position-x: 60px;
+    background-position-y: center;
+}
+
+select {
+    &:focus {
+        border: 2px solid black;
+    }
+    &:active {
+        border: 2px solid black;
     }
 }
 

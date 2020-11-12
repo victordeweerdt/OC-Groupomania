@@ -17,10 +17,7 @@
                     v-on:click.prevent="updateUsers(user)"
                     >Mettre à jour
                 </button>
-                <select name="permission" id="permission-select">
-                    <option value="">{{ permission }}</option>
-                    <option value="1">true</option>
-                </select>
+                <slot name="Permission"></slot>
             </div>
         </div>
         <div class="secondary-side">
@@ -51,10 +48,6 @@ export default {
         email: {
             type: String,
             default: 'vdeweerdt@groupomania.com'
-        },
-        permission: {
-            type: Boolean,
-            default: false
         },
         user: {
             type: String
@@ -113,26 +106,8 @@ export default {
         }
         .right-side {
             display: flex;
-            #permission-select {
-                width: 100px;
-                height: 60px;
-                padding-left: 20px;
-                appearance: none;
-                background-image: url('../assets/ic_arrow_drop_down_24px.svg');
-                background-repeat: no-repeat;
-                background-position-x: 60px;
-                background-position-y: center;
-            }
             #update-btn {
                 border: none;
-            }
-            select {
-                &:focus {
-                    border: 2px solid black;
-                }
-                &:active {
-                    border: 2px solid black;
-                }
             }
         }
     }

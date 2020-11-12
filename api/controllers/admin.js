@@ -66,13 +66,10 @@ exports.modifyUserAdmin = (req, res, next) => {
   
     const Users = db.Users;
     Users.update({ 
-      lastName: req.body.lastName,
-      firstName: req.body.firstName,
-      email: req.body.email,
       permission: req.body.permission
     },
       {where: { id: req.params.id }
     })
-    .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
+    .then(user => { res.status(201).json(user)})
     .catch(error => res.status(500).json({ error }));
   };
