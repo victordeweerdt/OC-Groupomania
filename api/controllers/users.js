@@ -1,4 +1,5 @@
 // PLUGINS UTILISÉS
+const fs = require('fs');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../models/index.js');
@@ -91,45 +92,29 @@ exports.login = (req, res, next) => {
 exports.delete = (req, res, next) => {
 
   const Users = db.Users;
-  const Posts = db.Posts;
-  const Comments = db.Comments;
 
-  // Users.findOne({
-  //   where: {
-  //       id: req.params.id
-  //   }
-  // }).then(user => {
-  //     const filename = user.photo.split('/images/')[1];
-  //     fs.unlink(`images/${filename}`, () => { // Je supprimer l'image en lien grâce à la méthode unlink du package fs
-  //     Comments.destroy({ where: {user_id: req.params.id} })
-  //     Posts.destroy({ where: {user_id: req.params.id} })
-  //     Users.destroy({ where: {id: req.params.id} }) // On supprime l'objet
-  //         .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
-  //         .catch(error => res.status(400).json({ error }));
-  // });
-  // })
-  // .catch(() => res.status(400).json({ error: 'ici' }))
-
-
-  // Comments.destroy({
-  //   where: {
-  //     user_id: req.params.id
-  //   }
-  // })
-  
-  // Posts.destroy({
-  //   where: {
-  //     user_id: req.params.id
-  //   }
-  // })
-
-  Users.destroy({ 
-    where: { 
+  Users.findOne({
+    where: {
       id: req.params.id
     }
+  }).then(user => {
+    if (user.photo !== 'http://localhost:3000/images/userProfil.jpg1604999623448.jpg') {
+    const filename = user.photo.split('/images/')[1];
+    fs.unlink(`images/${filename}`, () => {
+      Users.destroy({ where: { id: req.params.id }})
+        .then(() => res.status(200).json({ message : 'Utilisateur supprimé !' }))
+        .catch(error => res.status(400).json( error ))
+      })
+    } else {
+      Users.destroy({ 
+        where: { 
+          id: req.params.id
+        }
+      })
+      .then(() => res.status(200).json({ message: 'Utilisateur supprimé' }))
+      .catch(error => res.status(500).json({ error }));
+    }
   })
-  .then(() => res.status(200).json({ message: 'Utilisateur supprimé' }))
-  .catch(error => res.status(500).json({ error }));
 };
 
 
