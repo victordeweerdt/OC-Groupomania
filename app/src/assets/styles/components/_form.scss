@@ -31,6 +31,9 @@
     align-items: center;
     padding: 15px 20px;
     font-weight: 400;
+    @media (max-width: $med) {
+        width: 100%;
+    }
 }
 
 .btn-delete {
@@ -45,6 +48,9 @@
     padding: 5px 20px 8px;
     font-weight: 600;
     margin: 10px 0;
+    @media (max-width: $med) {
+        width: 100%;
+    }
 }
 
 .input-l {
@@ -55,7 +61,14 @@
     font-size: 1rem;
     padding: 15px 30px 17px;
     font-weight: 500;
+    @media (max-width: $med) {
+        width: 100%;
+    }
     &:focus {
         border: none;
     }
+}
+
+.form-control {
+    color: black;
 }

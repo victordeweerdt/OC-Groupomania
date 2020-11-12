@@ -117,6 +117,9 @@ export default {
     @media (max-width:$xl) {
         padding: 100px 80px 20px;
     }
+    @media (max-width:$med) {
+        padding: 100px 20px 20px;
+    }
 }
 
 .bottom-side {
@@ -127,6 +130,9 @@ export default {
     }
     @media (max-width:$xl) {
         padding: 50px 80px;
+    }
+    @media (max-width:$med) {
+        padding: 20px 20px;
     }
 }
 

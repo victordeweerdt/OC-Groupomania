@@ -90,6 +90,9 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  @media (max-width: $med) {
+      padding: 40px 20px;
+  }
 
   .back-to-home {
     text-align:left;
@@ -99,7 +102,6 @@ export default {
     font-weight: 500;
     text-decoration: none;
     color: #2c3e50;
-    padding-right: 30px;
     font-size: 1.5rem;
 
     &.router-link-exact-active {
@@ -142,6 +144,9 @@ export default {
             background-color: white;
             color: white;
             display: none;
+            @media (max-width: $med) {
+              top: 90px;
+            }
             .mdi {
                 padding-right: 5px;
                 top: 2px;

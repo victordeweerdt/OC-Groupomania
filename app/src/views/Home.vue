@@ -179,6 +179,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '../assets/styles/main.scss';
 
 .forum {
     background-color: white;
@@ -238,6 +239,10 @@ export default {
     height: 40px;
     background-color: #FAFAFA;
     border: none;
+    @media (max-width: $med) {
+            font-size: 0.8rem;
+            min-height: 40px;
+        }
     &:focus {
         height: auto;
     }

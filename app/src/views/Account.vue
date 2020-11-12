@@ -33,7 +33,7 @@
                     v-model="dataUser.password"
                 />
 
-                <label class="file-select c-6">
+                <label class="file-select c-6 cm-12">
                     <div class="select-button">
                         <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.photo.name}}</span>
                         <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
@@ -182,10 +182,13 @@ export default {
 }
 
 .user {
-  display: flex;
-  justify-content: center;
-  padding: 100px 0;
-  background-color: white;
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+    background-color: white;
+    @media (max-width:$med) {
+        padding: 50px 0;
+    }
 }
 
 #photo {
@@ -226,6 +229,9 @@ export default {
         padding: 0px 25% 10px;
     @media (max-width:$xl) {
             padding: 0 80px 200px;
+    }
+    @media (max-width:$med) {
+            padding: 0 20px 50px;
     }
 }
 

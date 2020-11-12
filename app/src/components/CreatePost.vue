@@ -16,10 +16,10 @@
             ></textarea>
         </div>
         <div class="new-post-buttons">
-            <label class="c-6 file-select">
+            <label class="c-6 cm-12 file-select">
                 <div class="select-button">
-                <span v-if="postContent.attachments">Fichier séléctionné : {{postContent.attachments.name}}</span>
-                <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
+                    <span v-if="postContent.attachments">Fichier séléctionné : {{postContent.attachments.name}}</span>
+                    <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
                 </div>
                 <input 
                     type="file"
@@ -29,7 +29,7 @@
                     v-on:change="handleFileUpload()"
                 />
             </label>
-            <div class="c-6">
+            <div class="c-6 cm-12">
                 <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier" v-on:click="loadAllPosts()"/>
             </div>
         </div>
@@ -152,6 +152,7 @@ export default {
 
 #user-name {
   padding-left: 20px;
+  font-weight: 600;
 }
 
 .new-post {
@@ -159,6 +160,9 @@ export default {
   padding: 40px 0px;
   @media (max-width: $lg) {
     padding: 40px 80px;
+  }
+  @media (max-width: $med) {
+      padding: 80px 20px 20px;
   }
 }
 
@@ -170,12 +174,16 @@ export default {
   font-weight: 400;
   min-height: 150px;
   font-size: 1.5rem;
+  &::placeholder {
+      color: rgb(197, 197, 197);
+  }
 }
 
 .new-post-buttons {
   display: flex;
   min-height: 60px;
   align-items: center;
+  flex-wrap: wrap;
   .mdi {
     border: 1px solid #e4e4e4;
     padding: 10px 15px;
@@ -193,6 +201,10 @@ export default {
     border: 1px solid #EEEEEE;
     width: calc(100% - 20px);
     cursor: pointer;
+    @media (max-width:$lg) {
+        width: 100%;
+        margin: 20px 0;
+    }
 }
 
 .file-select > input[type="file"] {

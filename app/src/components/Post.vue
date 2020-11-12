@@ -1,11 +1,11 @@
 <template>
     <div class="post c-6 cm-12">
         <div class="top-post">
-            <div class="c-8 user-id">
+            <div class="c-8 cs-10 user-id">
                 <img id="user-photo" :src="userPhoto">
                 <p class="user-name"> {{ firstName }} {{ lastName }} </p>
             </div>
-            <div class="c-4">
+            <div class="c-4 cs-2">
                 <p class="post-date">{{ createdAt | moment("ddd, hA") }}</p>
             </div>
         </div>
@@ -76,8 +76,11 @@ export default {
     padding: 25px;
     border-radius: 0;
     box-shadow: 0px 2px 3px 0px #EAEAEA;
-        @media (max-width: $lg) {
+    @media (max-width: $lg) {
         margin: 30px 80px;
+    }
+    @media (max-width: $med) {
+        margin: 20px 20px 20px;
     }
 }
 
@@ -133,6 +136,7 @@ export default {
 .user-name {
     font-size: 0.9rem;
     padding: 10px 20px;
+    font-weight: 600;
 }
 
 .last-comments {
@@ -145,6 +149,10 @@ export default {
         margin-left: 20px;
         padding: 10px 20px;
         border-radius: 30px;
+        @media (max-width: $med) {
+            font-size: 0.8rem;
+            min-height: 40px;
+        }
         .user-name {
             padding: 0 0 5px;
         }

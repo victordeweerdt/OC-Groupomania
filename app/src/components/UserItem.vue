@@ -84,6 +84,9 @@ export default {
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
+    @media (max-width: $med) {
+        flex-wrap: wrap;
+    }
     .main-side {
         display: flex;
         align-items: center;
@@ -92,6 +95,7 @@ export default {
         padding: 25px;
         width: 100%;
         box-shadow: 0px 2px 3px 0px #EAEAEA;
+        flex-wrap: wrap;
         .user-identity {
             padding-left: 20px;
             .user-name {
@@ -103,11 +107,20 @@ export default {
         .left-side {
             display: flex;
             align-items: center;
+            @media (max-width: $med) {
+                padding-bottom: 20px;
+            }
         }
         .right-side {
             display: flex;
+            @media (max-width: $med) {
+                    width: 100%;
+                }
             #update-btn {
                 border: none;
+                @media (max-width: $med) {
+                    border: 1px solid #f5f5f5;
+                }
             }
         }
     }
@@ -117,11 +130,18 @@ export default {
         align-items: center;
         height: auto;
         margin: 20px;
+        @media (max-width: $med) {
+            width: 100%;
+            margin: 10px 0;
+        }
         .delete-user {
             width: 60px;
             height: 60px;
             background-color: $second-color;
             border: none;
+            @media (max-width: $med) {
+                width: 100%;
+            }
             .mdi {
                 color: $main-color;
             }

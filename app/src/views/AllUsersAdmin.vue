@@ -135,6 +135,9 @@ export default {
     @media (max-width:$xl) {
         padding: 100px 80px 100px;
     }
+    @media (max-width:$med) {
+        padding: 100px 20px 100px;
+    }
 }
 
 .button {
@@ -150,6 +153,9 @@ export default {
     @media (max-width:$xl) {
         padding: 80px 80px 100px;
     }
+    @media (max-width:$med) {
+        padding: 20px 20px 100px;
+    }
 }
 
 #permission-select {
@@ -161,6 +167,11 @@ export default {
     background-repeat: no-repeat;
     background-position-x: 60px;
     background-position-y: center;
+    @media (max-width: $med) {
+        width:100%;
+        background-position-x: 140px;
+        height: 56px;
+    }
 }
 
 select {
