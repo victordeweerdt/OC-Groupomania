@@ -32,12 +32,21 @@
                     placeholder="Votre mot de passe"
                     v-model="dataUser.password"
                 />
-                <input 
-                    type="file" 
-                    id="photo" 
-                    ref="photo" 
-                    v-on:change.prevent="handleFileUpload()"
-                />
+
+                <label class="file-select c-6">
+                    <div class="select-button">
+                        <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.photo.name}}</span>
+                        <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
+                    </div>
+                    <input 
+                        type="file"
+                        id="photo"
+                        class="upload-input"
+                        ref="photo" 
+                        v-on:change="handleFileUpload()"
+                    />
+                </label>
+
                 <div class="buttons">
                   <div class="c-12">
                     <button 
@@ -72,6 +81,9 @@ export default {
               lastName: '',
               email: '',
               photo: ''
+          },
+          newUserData: {
+            photo: ''
           }
         };
     },
@@ -98,7 +110,7 @@ export default {
           formData.append('email', this.dataUser.email);
           formData.append('firstName', this.dataUser.firstName);
           formData.append('lastName', this.dataUser.lastName);
-          formData.append('photo', this.dataUser.photo, this.dataUser.photo.name);
+          formData.append('photo', this.newUserData.photo, this.newUserData.photo.name);
           axios
             .put('http://localhost:3000/api/users/me',
                   formData,
@@ -127,7 +139,7 @@ export default {
             })
         },
         handleFileUpload(){
-          this.dataUser.photo = this.$refs.photo.files[0];
+          this.newUserData.photo = this.$refs.photo.files[0];
         },
         deleteUser() {
             this.$confirm(
@@ -221,6 +233,35 @@ button {
   .mdi {
     padding-right: 10px;
   }
+}
+
+.file-select > .select-button {
+    padding: 1rem;
+    color: black;
+    background-color: white;
+    border-radius: .3rem;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #EEEEEE;
+    width: calc(100% - 5px);
+    cursor: pointer;
+}
+
+.file-select > input[type="file"] {
+  display: none;
+}
+
+.select-button {
+    .add-file {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+    }
+    .mdi {
+        border: none;
+        padding-right: 15px;
+    }
 }
 
 </style>

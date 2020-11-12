@@ -16,14 +16,19 @@
             ></textarea>
         </div>
         <div class="new-post-buttons">
-            <div class="c-6 upload-file">
-            <input 
+            <label class="c-6 file-select">
+                <div class="select-button">
+                <span v-if="postContent.attachments">Fichier séléctionné : {{postContent.attachments.name}}</span>
+                <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
+                </div>
+                <input 
                     type="file"
-                    id="photo" 
+                    id="photo"
+                    class="upload-input"
                     ref="photo" 
                     v-on:change="handleFileUpload()"
                 />
-            </div>
+            </label>
             <div class="c-6">
                 <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier" v-on:click="loadAllPosts()"/>
             </div>
@@ -176,5 +181,33 @@ export default {
     padding: 10px 15px;
     border-radius: 30px;
   }
+}
+
+.file-select > .select-button {
+    padding: 1rem;
+    color: black;
+    background-color: white;
+    border-radius: .3rem;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #EEEEEE;
+    width: calc(100% - 20px);
+    cursor: pointer;
+}
+
+.file-select > input[type="file"] {
+  display: none;
+}
+
+.select-button {
+    .add-file {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+    }
+    .mdi {
+        border: none;
+    }
 }
 </style>
