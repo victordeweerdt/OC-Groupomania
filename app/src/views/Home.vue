@@ -89,11 +89,6 @@ export default {
         }
     },
     created() {
-        if (this.$cookies.isKey("token")) {
-        console.log('Token : OK')
-        } else {
-        this.$router.push("/signup");
-        }
         axios
             .get('http://localhost:3000/api/posts', {
                 headers: { Authorization: "Bearer " + this.cookie }

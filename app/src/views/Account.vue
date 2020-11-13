@@ -89,11 +89,6 @@ export default {
     },
 
     created() {
-      if (this.$cookies.isKey("token")) {
-      console.log('Token : OK')
-    } else {
-      this.$router.push("/login");
-    }
       axios
         .get("http://localhost:3000/api/users/me", {
           headers: { Authorization: "Bearer " + this.cookie }
