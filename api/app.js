@@ -17,7 +17,6 @@ const usersRoutes = require('./routes/users');
 const commentsRoutes = require('./routes/comments')
 const adminRoutes = require('./routes/admin')
 
-
 // Configure routes
 app.use('/', function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,7 +24,6 @@ app.use('/', function(req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
-
 
 // BodyParser configuration
 app.use(bodyParser.urlencoded({ extended: true }));

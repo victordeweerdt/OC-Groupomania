@@ -16,9 +16,10 @@
             :key="user.id"
             >
             <template v-slot:Permission>
-                <select name="permission" id="permission-select" v-model="user.permission">
-                    <option value="">false</option>
-                    <option value="1">true</option>
+                <select name="permission" id="permission-select" v-model.number="user.permission">
+                    <option v-for="option in options" v-bind:key="option.value">
+                        {{ option.text }}
+                    </option>
                 </select>
             </template>
             </UserItem>
@@ -43,11 +44,14 @@ export default {
             user: {
                 firstName: 'Victor',
                 lastName: 'Deweerdt',
-                photo: 'http://localhost:3000/images/DSC04282.jpg1604754621573.jpg',
-                email: 'vdeweerdt@groupomania.com',
-                permission: false
-            }
-
+                photo: '',
+                email: '',
+                permission: false,
+            },
+            options: [
+                { text: 'false', value: '0' },
+                { text: 'true', value: '1' }
+            ],
         }
     },
     created() {

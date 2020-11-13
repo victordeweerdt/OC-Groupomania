@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Palmaisred2309202",
+    "password": "",
     "database": "keeplinkdb",
     "host": "127.0.0.1",
     "dialect": "mysql"
