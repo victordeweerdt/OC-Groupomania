@@ -9,9 +9,6 @@
             </div>
         </div>
         <div class="c-4">
-          <!-- <div class="users-link">
-            <p>Accèder aux utilisateurs</p>
-          </div> -->
             <div id="account" v-if="cookie != null">
                 <div id="toggleAccount">
                   <img id="user-photo-header" v-bind:src="userPhoto">

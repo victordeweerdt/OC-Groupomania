@@ -20,9 +20,9 @@
                     <div class="comment-bloc"
                         v-for="comment in post.Comments"
                         v-bind:key="comment.id">
-                        <img class="user-photo-comment" :src="comment.user_id">
+                        <img class="user-photo-comment" :src="comment.User.photo">
                         <div class="comment-area">
-                            <p class="user-name">{{ comment.user_id }} {{ comment.user_id }}</p>
+                            <p class="user-name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
                             <p>{{ comment.content }}</p>
                         </div>
                     </div>
