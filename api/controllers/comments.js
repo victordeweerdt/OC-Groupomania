@@ -62,7 +62,8 @@ exports.deleteComments = (req, res, next) => {
 
     Comments.destroy({
         where: {
-            post_id: req.params.id
+            post_id: req.params.post_id,
+            id: req.params.id
         }
     })
     .then(() => res.status(200).json({ message: 'Commentaires supprimés!'}))
