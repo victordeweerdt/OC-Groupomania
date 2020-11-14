@@ -25,6 +25,7 @@
                             <p class="user-name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
                             <p>{{ comment.content }}</p>
                         </div>
+                        <div v-on:click="deleteComment(post.id, comment.id)" id="deleteIcon" class="delete-comment" v-if="comment.user_id == user.id"><span class="mdi mdi-delete-outline"></span></div>
                     </div>
                 </div>
             </template>
@@ -42,7 +43,7 @@
                         </div>
                         <div class="bottom-post">
                             <button v-on:click="submitComment(post.id)" id="comment-submit" type="submit" class="btn-med">Publier</button>
-                            <div v-on:click="deletePost(post.id)" id="deleteIcon"><span class="mdi mdi-delete-outline"></span></div>
+                            <div v-on:click="deletePost(post.id)" id="deleteIcon" v-if="post.user_id == user.id"><span class="mdi mdi-delete-outline"></span></div>
                         </div>
                     </form>
                 </div>
@@ -169,6 +170,32 @@ export default {
                 })
                 .catch(error => console.log(error))
         },
+        deleteComment(postId, commentId) {
+            this.$confirm(
+                {
+                    message: `Supprimer ce commentaire ?`,
+                    button: {
+                        no: 'Non',
+                        yes: 'Oui'
+                    },
+                    callback: confirm => {
+                        if (confirm) {
+                            axios
+                                .delete('http://localhost:3000/api/posts/' + postId + '/comments/' + commentId, {
+                                    headers: { Authorization: "Bearer " + this.cookie }
+                                })
+                                .then(response => {
+                                    console.log(response)
+                                    this.loadPosts();
+                                })
+                                .catch(error => {
+                                    window.alert(error);
+                                })
+                        }
+                    }
+                }
+            )
+        }
     }
 }
 </script>
@@ -293,6 +320,13 @@ export default {
         font-size: 0.9rem;
         padding: 20px 0;
     }
+}
+
+.delete-comment {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 </style>
