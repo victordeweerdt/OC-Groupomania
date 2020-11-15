@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="c-4">
-            <div id="account" v-if="cookie != null">
+            <div id="account" v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
                 <div id="toggleAccount">
                   <img id="user-photo-header" v-bind:src="userPhoto">
                   <div id="submenu">
@@ -33,26 +33,26 @@ export default {
         return {
           cookie: this.$cookies.get("token"),
           userPhoto: '',
-          admin: ''
+          admin: '',
+          account: ''
         }
     },
     created() {
-      console.log('test');
-        axios
-        .get('http://localhost:3000/api/users/me', {
-            headers: { 
-            Authorization: "Bearer " + this.cookie }
-        })
-        .then(response => {
-            this.userPhoto = response.data.user.photo;
-            this.admin = response.data.user.permission;
-        })
-        .catch(error => {
-            console.log(error);
-        })
         if (this.cookie == null) {
-            const accountLink = document.getElementById('account');
-            accountLink.style.display = "none";
+            return false;
+        } else {
+            axios
+                .get('http://localhost:3000/api/users/me', {
+                    headers: { 
+                    Authorization: "Bearer " + this.cookie }
+                })
+                .then(response => {
+                    this.userPhoto = response.data.user.photo;
+                    this.admin = response.data.user.permission;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
     },
     methods: {
@@ -71,8 +71,32 @@ export default {
                     }
                 }
             })
+        },
+        loadUser() {
+            if (this.$cookies.isKey("token")) {
+                axios
+                    .get('http://localhost:3000/api/users/me', {
+                        headers: { 
+                        Authorization: "Bearer " + this.cookie }
+                    })
+                    .then(response => {
+                        this.userPhoto = response.data.user.photo;
+                        this.admin = response.data.user.permission;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            } else {
+                return false;
+            }
         }
     },
+    watch: {
+        '$route' () {
+            this.cookie = this.$cookies.get("token");
+            this.loadUser();
+        }
+    }
 }
 </script>
 

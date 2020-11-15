@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <vue-confirm-dialog></vue-confirm-dialog>
-        <NavBar />
+        <NavBar/>
         <router-view />
     </div>
 </template>
@@ -12,7 +12,7 @@ export default {
     name: "app",
     components: {
         NavBar,
-    },
+    }
 };
 </script>
 

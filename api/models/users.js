@@ -15,15 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: {
           name: 'user_id'
         },
-        onDelete: 'cascade',
-        hooks:true
       });
       models.Users.hasMany(models.Comments, {
         foreignKey: {
           name: 'user_id'
         },
-        onDelete: 'cascade',
-        hooks:true
       });
     }
   };
