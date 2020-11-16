@@ -1,24 +1,20 @@
-# frontend
+# Readme
 
-## Project setup
-```
-yarn install
-```
+## Démarrage de l'application frontend
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+- Clônez le repo sur lequel vous vous trouvez.
+- À la racine du dossier app faites un npm start. (Sous OSX vérifiez que vous avez vscode ou CLT Apple)
+- Puis npm run serve
+- Vous rendre sur http://localhost:8080/
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Installation de la base de données
 
-### Lints and fixes files
-```
-yarn lint
-```
+- Copier keeplinkdb.sql dans votre base de données
+- Dans un fichier .env.dist, insérer les informations suivantes : 
+    => DB_NAME=admin@keeplink.com
+    => DB_MDP=adminPassword
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Démarrage de l'application backend
+
+- À la racine du dossier api, faites un node server ou nodemon server (node recquis pour cette aplication)
+- Vous pouvez utiliser l'application. Enjoy!
