@@ -146,15 +146,28 @@ exports.modifyUser = (req, res, next) => {
   const userId = decodedToken.userId;
 
   const Users = db.Users;
-  Users.update({ 
-    lastName: req.body.lastName,
-    firstName: req.body.firstName,
-    email: req.body.email,
-    photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  },
-    {where: { id: userId }
-  })
-  .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
-  .catch(error => res.status(500).json({ error }));
+
+  if (req.body.photo == null) {
+    Users.update({ 
+      lastName: req.body.lastName,
+      firstName: req.body.firstName,
+      email: req.body.email,
+    },
+      {where: { id: userId }
+    })
+    .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
+    .catch(error => res.status(500).json({ error }));
+  } else {
+    Users.update({ 
+      lastName: req.body.lastName,
+      firstName: req.body.firstName,
+      email: req.body.email,
+      photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    },
+      {where: { id: userId }
+    })
+    .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
+    .catch(error => res.status(500).json({ error }));
+  }
 };
 

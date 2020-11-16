@@ -25,13 +25,6 @@
                     placeholder="name@example.com"
                     v-model="dataUser.email"
                 />
-                <input 
-                    type="password" 
-                    class="input-l" 
-                    id="password-input" 
-                    placeholder="Votre mot de passe"
-                    v-model="dataUser.password"
-                />
 
                 <label class="file-select c-6 cm-12">
                     <div class="select-button">
@@ -83,7 +76,7 @@ export default {
               photo: ''
           },
           newUserData: {
-            photo: ''
+            photo: null
           }
         };
     },
@@ -101,28 +94,52 @@ export default {
 
     methods: {
         updateUserInformations() {
-          let formData = new FormData();
-          formData.append('email', this.dataUser.email);
-          formData.append('firstName', this.dataUser.firstName);
-          formData.append('lastName', this.dataUser.lastName);
-          formData.append('photo', this.newUserData.photo, this.newUserData.photo.name);
-          axios
-            .put('http://localhost:3000/api/users/me',
-                  formData,
-                  {
-                  headers: {
-                      'Content-Type': 'multipart/form-data',
-                      Authorization: "Bearer " + this.cookie
-                  },
-                }
-              ).then(() => {
-                console.log('Image téléchargée !');
-                this.$router.go();
-            })
-            .catch(error =>
-              console.log(error)
-            );
-        },
+          console.log(this.newUserData.photo);
+          if (this.newUserData.photo !== null) {
+            let formData = new FormData();
+            formData.append('email', this.dataUser.email);
+            formData.append('firstName', this.dataUser.firstName);
+            formData.append('lastName', this.dataUser.lastName);
+            formData.append('photo', this.newUserData.photo, this.newUserData.photo.name);
+            axios
+              .put('http://localhost:3000/api/users/me',
+                    formData,
+                    {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Authorization: "Bearer " + this.cookie
+                    },
+                  }
+                ).then(() => {
+                  console.log('Image téléchargée !');
+                  this.$router.go();
+              })
+              .catch(error =>
+                console.log(error)
+              );
+            } else {
+              let formData = new FormData();
+              formData.append('email', this.dataUser.email);
+              formData.append('firstName', this.dataUser.firstName);
+              formData.append('lastName', this.dataUser.lastName);
+              axios
+                .put('http://localhost:3000/api/users/me',
+                      formData,
+                      {
+                      headers: {
+                          'Content-Type': 'multipart/form-data',
+                          Authorization: "Bearer " + this.cookie
+                      },
+                    }
+                  ).then(() => {
+                    console.log('Image téléchargée !');
+                    this.$router.go();
+                })
+                .catch(error =>
+                  console.log(error)
+                );
+            }
+          },
         loadUser() {
           axios
             .get("http://localhost:3000/api/users/me", {

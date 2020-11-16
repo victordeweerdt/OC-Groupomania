@@ -4,6 +4,10 @@
             Gestion des utilisateurs 
             <br>par les admins
         </h1>
+        <p class="subtitle">Vous pouvez gérer la permission des utilisateurs en changeant le false à true et en mettant à jour. 
+            <span class="alert"><br>Attention !</span> Une fois mis à jour vous n’aurez plus accès à l’utilisateur car il sera admin à son tour.
+            <br>Vous pouvez aussi supprimer un utilisateur.
+        </p>
         <div class="all-user-items">
             <UserItem 
             v-for="user in allUsers"
@@ -132,10 +136,20 @@ export default {
 .title {
     padding: 100px 0 50px 25%;
     @media (max-width:$xl) {
-        padding: 100px 80px 100px;
+        padding: 100px 80px 50px;
     }
     @media (max-width:$med) {
-        padding: 100px 20px 100px;
+        padding: 100px 20px 50px;
+    }
+}
+
+.subtitle {
+    padding: 0px 25% 50px 25%;
+    @media (max-width:$xl) {
+        padding: 0px 80px 100px;
+    }
+    @media (max-width:$med) {
+        padding: 0px 20px 100px;
     }
 }
 
@@ -148,7 +162,7 @@ export default {
 
 .all-user-items {
     background-color: #FAFAFA;
-    padding: 100px 25% 80px;
+    padding: 50px 25% 80px;
     @media (max-width:$xl) {
         padding: 80px 80px 100px;
     }
@@ -180,6 +194,10 @@ select {
     &:active {
         border: 2px solid black;
     }
+}
+
+.alert {
+    color: $main-color;
 }
 
 </style>
