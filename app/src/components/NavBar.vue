@@ -11,9 +11,10 @@
         <div class="c-4">
             <div id="account" v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
                 <div id="toggleAccount">
-                  <img id="user-photo-header" v-bind:src="userPhoto">
-                  <div id="submenu">
-                      <ul>
+                    <span class="mdi mdi-chevron-down"></span>
+                    <img id="user-photo-header" v-bind:src="userPhoto">
+                    <div id="submenu">
+                        <ul>
                             <li><router-link to="/account"><span class="mdi mdi-account"></span>Informations</router-link></li>
                             <li v-if="admin == 1"><router-link to="/allusersadmin"><span class="mdi mdi-account-group"></span>Tous les utilisateurs</router-link></li>
                             <li><a href="#" class="logOut" @click="logOut()"><span class="mdi mdi-logout"></span>Se déconnecter</a></li>
@@ -155,6 +156,16 @@ export default {
 
 #toggleAccount {
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .mdi-chevron-down {
+          padding-right: 10px;
+          opacity: 1;
+          transition: ease-in 100ms;
+          top: 0;
+          position: relative;
+      }
     #submenu {
             top: 80px;
             right: 0;
@@ -182,6 +193,10 @@ export default {
             }
         }
         &:hover {
+            .mdi-chevron-down {
+                opacity: 0;
+                top: 5px;
+            }
             #submenu {
                 display: block;
             }
