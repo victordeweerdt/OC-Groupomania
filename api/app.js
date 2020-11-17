@@ -17,8 +17,8 @@ const usersRoutes = require('./routes/users');
 const commentsRoutes = require('./routes/comments')
 const adminRoutes = require('./routes/admin')
 
-// // Connexion à la base de données
-// require("./database_connection");
+// Connexion à la base de données
+require("./database_connection");
 
 // Configure routes
 app.use('/', function(req, res, next) {

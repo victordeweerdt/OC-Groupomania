@@ -9,6 +9,7 @@
                     class="input-l" 
                     id="firstName" 
                     placeholder="First-name"
+                    aria-label="Prénom de l'utilisateur"
                     v-model="dataUser.firstName"
                 />
                 <input 
@@ -16,18 +17,20 @@
                     class="input-l" 
                     id="lastName" 
                     placeholder="Last-name"
+                    aria-label="Nom de famille de l'utilisateur"
                     v-model="dataUser.lastName"
                 />
                 <input 
                     type="email" 
                     class="input-l" 
-                    id="email" 
+                    id="email"
+                    aria-label="Email de l'utilisateur"
                     placeholder="name@example.com"
                     v-model="dataUser.email"
                 />
 
                 <label class="file-select c-12">
-                    <div class="select-button">
+                    <div class="select-button" role="button" aria-label="Téléchargement d'un fichier">
                         <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.photo.name}}</span>
                         <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
                     </div>
@@ -45,6 +48,7 @@
                     <button 
                       type="submit" 
                       class="btn btn-primary mb-2 btn-update"
+                      aria-label="Modifier les informations utilisateur"
                       @click.prevent="updateUserInformations"
                     >Mettre à jour les informations</button>
                   </div>
@@ -52,6 +56,7 @@
                     <button 
                       type="submit" 
                       class="btn btn-primary mb-2 btn-delete"
+                      aria-label="Supprimer l'utilisateur"
                       @click.prevent="deleteUser"
                     >Supprimer le compte</button>
                   </div>

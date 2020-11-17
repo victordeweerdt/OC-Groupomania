@@ -17,6 +17,7 @@
                     class="input-l" 
                     id="firstName" 
                     placeholder="First-name"
+                    aria-label="Prénom de l'utilisateur"
                     v-model="dataUser.firstName"
                 />
                 <input 
@@ -24,6 +25,7 @@
                     class="input-l" 
                     id="lastName" 
                     placeholder="Last-name"
+                    aria-label="Nom de famille de l'utilisateur"
                     v-model="dataUser.lastName"
                 />
                 <input 
@@ -38,12 +40,14 @@
                     class="input-l" 
                     id="password-input" 
                     placeholder="Votre mot de passe"
+                    aria-label="Mot de passe de l'utilisateur"
                     v-model="dataUser.password"
                     v-on:keyup.enter="submitSignup"
                 />
                 <button 
                     type="submit" 
                     class="btn btn-primary mb-2 btn-submit"
+                    aria-label="Inscription de l'utilisateur"
                     @click.prevent="submitSignup"
                 ><span class="mdi mdi-arrow-right"></span></button>
             </div>
@@ -76,7 +80,8 @@ export default {
                         this.dataUser
                     )
                     .then(response => {
-                        console.log(response)
+                        console.log(response);
+                        this.$router.push("/login");
                     })
                     .catch(error => {
                         console.log(error.response)

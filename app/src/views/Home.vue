@@ -25,7 +25,7 @@
                             <p class="user-name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
                             <p>{{ comment.content }}</p>
                         </div>
-                        <div v-on:click="deleteComment(post.id, comment.id)" id="deleteIcon" class="delete-comment" v-if="comment.user_id == user.id || user.permission == 1"><span class="mdi mdi-delete-outline"></span></div>
+                        <div v-on:click="deleteComment(post.id, comment.id)" id="deleteIcon" class="delete-comment" v-if="comment.user_id == user.id || user.permission == 1"><span class="mdi mdi-delete-outline" role="button" aria-label="Suppression d'un commentaire"></span></div>
                     </div>
                 </div>
             </template>
@@ -37,13 +37,14 @@
                             <textarea 
                                 id="comment-area" 
                                 class="form-control"
-                                v-model="newComment.content" 
+                                v-model="newComment.content"
+                                aria-label="Zone d'un commentaire" 
                                 placeholder="Écrire votre commentaire ici"
                             ></textarea>
                         </div>
                         <div class="bottom-post">
-                            <button v-on:click="submitComment(post.id)" id="comment-submit" type="submit" class="btn-med">Publier</button>
-                            <div v-on:click="deletePost(post.id)" id="deleteIcon" v-if="post.user_id == user.id || user.permission == 1"><span class="mdi mdi-delete-outline"></span></div>
+                            <button v-on:click="submitComment(post.id)" id="comment-submit" type="submit" class="btn-med" aria-label="Publication d'un commentaire">Publier</button>
+                            <div v-on:click="deletePost(post.id)" id="deleteIcon" v-if="post.user_id == user.id || user.permission == 1"><span class="mdi mdi-delete-outline" role="button" aria-label="Suppression d'un post"></span></div>
                         </div>
                     </form>
                 </div>

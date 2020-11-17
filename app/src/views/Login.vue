@@ -17,6 +17,7 @@
                     class="input-l" 
                     id="email" 
                     placeholder="name@example.com"
+                    aria-label="email d'un utilisateur"
                     v-model="dataUser.email"
                 />
                 <input 
@@ -24,12 +25,14 @@
                     class="input-l" 
                     id="password-input" 
                     placeholder="Votre mot de passe"
+                    aria-label="Mot de passe d'un utilisateur"
                     v-model="dataUser.password"
                     v-on:keyup.enter="submitLogin"
                 />
                 <button 
                     type="submit" 
                     class="btn btn-primary mb-2 btn-submit"
+                    aria-label="Connexion d'un utilisateur"
                     @click.prevent="submitLogin"
                     v-on:keyup.enter="submitLogin"
                 ><span class="mdi mdi-arrow-right"></span></button>

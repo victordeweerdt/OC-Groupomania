@@ -5,12 +5,12 @@
         </div>
         <div class="c-4">
             <div class="app-name">
-                <router-link to="/"><p>Keeplink</p></router-link>
+                <router-link to="/"><p aria-label="Accès à la page d'accueil">Keeplink</p></router-link>
             </div>
         </div>
         <div class="c-4">
             <div id="account" v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
-                <div id="toggleAccount">
+                <div id="toggleAccount" role="link" aria-label="Accès aux informations utilisateurs">
                     <span class="mdi mdi-chevron-down"></span>
                     <img id="user-photo-header" v-bind:src="userPhoto">
                     <div id="submenu">

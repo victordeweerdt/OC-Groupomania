@@ -14,6 +14,7 @@
                     id="update-btn"
                     type="submit" 
                     class="btn btn-primary mb-2 btn-update"
+                    aria-label="Modification de permission admin d'un utilisateur"
                     v-on:click.prevent="updateUsers(user)"
                     >Mettre à jour
                 </button>
@@ -22,7 +23,8 @@
         </div>
         <div class="secondary-side">
             <button 
-                class="delete-user" 
+                class="delete-user"
+                aria-label="Suppression d'un utilisateur" 
                 v-on:click.prevent="deleteUser(user)"><span class="mdi mdi-delete-outline"></span></button>
         </div>
     </div>

@@ -10,14 +10,15 @@
         <div class="post-textarea">
             <textarea 
                 id="post-area" 
-                class="form-control" 
+                class="form-control"
+                aria-label="Contenu texte d'un post" 
                 v-model="postContent.content" 
                 placeholder="Écrire votre post ici"
             ></textarea>
         </div>
         <div class="new-post-buttons">
             <label class="c-6 cm-12 file-select">
-                <div class="select-button">
+                <div class="select-button" role="button" aria-label="Téléchargement d'un fichier">
                     <span v-if="postContent.attachments">Fichier séléctionné : {{postContent.attachments.name}}</span>
                     <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
                 </div>
@@ -30,7 +31,7 @@
                 />
             </label>
             <div class="c-6 cm-12">
-                <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier" v-on:click="loadAllPosts()"/>
+                <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier" aria-label="Publication d'un post" v-on:click="loadAllPosts()"/>
             </div>
         </div>
         </form>

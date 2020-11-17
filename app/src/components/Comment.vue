@@ -5,7 +5,7 @@
             <img class="user-photo-comment" :src="commentUserPhoto">
             <div class="comment-area">
                 <p class="user-name">{{ commentFirstName }} {{ commentLastName }}</p>
-                <p>{{ commentContent }}</p>
+                <p aria-label="Zone de texte d'un commentaire">{{ commentContent }}</p>
             </div>
         </div>
     </div>
