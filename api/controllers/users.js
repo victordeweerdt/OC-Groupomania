@@ -147,27 +147,15 @@ exports.modifyUser = (req, res, next) => {
 
   const Users = db.Users;
 
-  if (req.body.photo == null) {
     Users.update({ 
       lastName: req.body.lastName,
       firstName: req.body.firstName,
       email: req.body.email,
+      photo: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: req.body.photo
     },
       {where: { id: userId }
     })
-    .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
+    .then(newUser => { res.status(201).json( newUser )})
     .catch(error => res.status(500).json({ error }));
-  } else {
-    Users.update({ 
-      lastName: req.body.lastName,
-      firstName: req.body.firstName,
-      email: req.body.email,
-      photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    },
-      {where: { id: userId }
-    })
-    .then(() => { res.status(201).json({ message: "Utilisateur modifié avec succès." })})
-    .catch(error => res.status(500).json({ error }));
-  }
 };
 

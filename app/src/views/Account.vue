@@ -96,6 +96,7 @@ export default {
         updateUserInformations() {
           console.log(this.newUserData.photo);
           if (this.newUserData.photo !== null) {
+            console.log('non null');
             let formData = new FormData();
             formData.append('email', this.dataUser.email);
             formData.append('firstName', this.dataUser.firstName);
@@ -118,10 +119,12 @@ export default {
                 console.log(error)
               );
             } else {
+              console.log('null');
               let formData = new FormData();
               formData.append('email', this.dataUser.email);
               formData.append('firstName', this.dataUser.firstName);
               formData.append('lastName', this.dataUser.lastName);
+              formData.append('photo', this.dataUser.photo);
               axios
                 .put('http://localhost:3000/api/users/me',
                       formData,
