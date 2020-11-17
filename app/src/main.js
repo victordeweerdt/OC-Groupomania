@@ -8,7 +8,6 @@ Vue.use(VueConfirmDialog)
 Vue.use(require('vue-moment'));
 
 require('./assets/styles/main.css');
-require('./theme.js');
 
 new Vue({
     router,
