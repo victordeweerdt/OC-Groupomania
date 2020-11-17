@@ -23,6 +23,6 @@
 ## Infos
 
 - L'utilisateur Victor est admin.
-Voici ces informations pour se connecter :
+Voici ses informations pour se connecter :
 email : victor@gmail.com
 mot de passe : VictorDeweerdt
