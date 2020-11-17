@@ -97,7 +97,6 @@ export default {
             .then((response) => {
                 console.log("posts", response.data);
                 this.allPosts = response.data;
-
             })
             .catch(error => {
                 console.log(error);
@@ -153,7 +152,14 @@ export default {
                 })
         },
         onSubmit() {
-            this.$router.go();
+            let messageText = document.getElementById('post-area')._value;
+            console.log(messageText);
+            if (messageText !== null) {
+                this.$router.go();
+            } else {
+                alert('Remplissez le champs texte de votre post !');
+                return false;
+            }
         },
         submitComment(postId) {
             const comment = this.newComment;

@@ -69,50 +69,51 @@ export default {
         .catch(error => {
             console.log(error);
         })
-        // if (this.user.photo == null) {
-            
-        // }
     },
     methods: {
         
         createPost() {
-            if (this.postContent.attachments !== null) {
-                let formData = new FormData();
-                formData.append('content', this.postContent.content);
-                formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
-                console.log('content with attachments')
-                axios
-                    .post('http://localhost:3000/api/posts', 
-                        formData , {
-                        headers: {
-                        'Content-Type': 'multipart/form-data',
-                        Authorization: "Bearer " + this.cookie }
-                        }
-                    )
-                    .then(response => {
-                        console.log(response)
-                        })
-                    .catch(error => {
-                        console.log(error)
-                        });
+            if (this.postContent.content !== null) {
+                if (this.postContent.attachments !== null) {
+                    let formData = new FormData();
+                    formData.append('content', this.postContent.content);
+                    formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
+                    console.log('content with attachments')
+                    axios
+                        .post('http://localhost:3000/api/posts', 
+                            formData , {
+                            headers: {
+                            'Content-Type': 'multipart/form-data',
+                            Authorization: "Bearer " + this.cookie }
+                            }
+                        )
+                        .then(response => {
+                            console.log(response);
+                            })
+                        .catch(error => {
+                            console.log(error)
+                            });
+                } else {
+                    let formData = new FormData();
+                    formData.append('content', this.postContent.content);
+                    console.log('content')
+                    axios
+                        .post('http://localhost:3000/api/posts', 
+                            formData , {
+                            headers: {
+                            'Content-Type': 'multipart/form-data',
+                            Authorization: "Bearer " + this.cookie }
+                            }
+                        )
+                        .then(response => {
+                            console.log(response);
+                            })
+                        .catch(error => {
+                            console.log(error)
+                            });
+                }
             } else {
-                let formData = new FormData();
-                formData.append('content', this.postContent.content);
-                console.log('content')
-                axios
-                    .post('http://localhost:3000/api/posts', 
-                        formData , {
-                        headers: {
-                        'Content-Type': 'multipart/form-data',
-                        Authorization: "Bearer " + this.cookie }
-                        }
-                    )
-                    .then(response => {
-                        console.log(response)
-                        })
-                    .catch(error => {
-                        console.log(error)
-                        });
+                return false;
             }
         },
         uploadImage() {

@@ -131,6 +131,7 @@ export default {
     font-size: 1.1rem;
     line-height: 1.5rem;
     padding: 1.5rem 0;
+    display: block;
 }
 
 .user-name {

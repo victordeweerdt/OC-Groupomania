@@ -8,8 +8,6 @@ const { sequelize } = require('../models/index.js');
 const db = require('../models/index.js');
 
 
-
-
 // CRÉATION D'UN POST
 exports.createPost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
@@ -48,7 +46,6 @@ exports.createPost = (req, res, next) => {
 };
 
 
-
 // AFFICHER TOUS LES POSTS
 exports.getAllPosts = (req, res, next) => {
     
@@ -70,6 +67,7 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 
+// Afficher un post
 exports.getOnePost = (req, res, next) => {
     
     const Posts = db.Posts;
@@ -90,27 +88,7 @@ exports.getOnePost = (req, res, next) => {
 };
 
 
-
-
-// Poster un commentaire
-exports.createComment = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
-    const userId = decodedToken.userId;
-
-    const Comments = db.Comments;
-
-    const newComment = Comments.create({
-        user_id: userId,
-        post_id: req.params.id,
-        content: req.body.commentContent
-    })
-    .then(newComment => res.status(200).json( newComment ))
-    .catch(error => res.status(500).json( error ))
-};
-
-
-
+// Modifier un post
 exports.modifyPost = (req, res, next) => {
 
     const Posts = db.Posts;
@@ -126,6 +104,7 @@ exports.modifyPost = (req, res, next) => {
 };
 
 
+// Supprimer un post
 exports.deletePost = (req, res, next) => {
 
     const Posts = db.Posts;

@@ -26,7 +26,7 @@
                     v-model="dataUser.email"
                 />
 
-                <label class="file-select c-6 cm-12">
+                <label class="file-select c-12">
                     <div class="select-button">
                         <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.photo.name}}</span>
                         <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
@@ -263,7 +263,7 @@ button {
     border-radius: .3rem;
     text-align: center;
     font-weight: 500;
-    border: 1px solid #EEEEEE;
+    border: 1px solid black;
     width: calc(100% - 5px);
     cursor: pointer;
 }
