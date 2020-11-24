@@ -33,7 +33,7 @@
                 <div class="commentZone">
                     <form>
                         <div class="comment-bloc">
-                            <img class="user-photo-comment" :src="user.photo">
+                            <img class="user-photo" :src="user.photo">
                             <textarea 
                                 id="comment-area" 
                                 class="form-control"
@@ -225,26 +225,6 @@ export default {
     display: flex;
     margin: 10px 0;
     width: 100%;
-}
-
-#user-photo {
-    object-fit: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-}
-
-.user-photo-comment {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    object-fit: cover;
 }
 
 .message-post {

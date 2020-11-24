@@ -12,7 +12,7 @@
             <div id="account" v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
                 <div id="toggleAccount" role="link" aria-label="Accès aux informations utilisateurs">
                     <span class="mdi mdi-chevron-down"></span>
-                    <img id="user-photo-header" v-bind:src="userPhoto">
+                    <img id="user-photo" v-bind:src="userPhoto">
                     <div id="submenu">
                         <ul>
                             <li><router-link to="/account"><span class="mdi mdi-account"></span>Informations</router-link></li>
@@ -145,11 +145,6 @@ export default {
   }
 }
 
-// .users-link {
-//   display: flex;
-//   justify-content: right;
-// }
-
 .logOut {
     cursor: pointer;
 }
@@ -207,24 +202,10 @@ export default {
   display: block;
 }
 
-#user-photo-header {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 60px;
-  object-fit: cover;
-}
-
 #account {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  #user-photo {
-    width: 60px;
-    height: 60px;
-  }
 }
 
 #logo-groupomania {

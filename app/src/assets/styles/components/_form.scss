@@ -80,3 +80,15 @@
         cursor: pointer;
     }
 }
+
+.select-button {
+    .add-file {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+    }
+    .mdi {
+        border: none;
+    }
+}

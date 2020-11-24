@@ -228,13 +228,8 @@ export default {
 }
 
 #user-photo {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100px;
   height: 100px;
-  border-radius: 60px;
-  object-fit: cover;
 }
 
 .fields {

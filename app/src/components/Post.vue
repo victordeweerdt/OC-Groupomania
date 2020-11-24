@@ -103,16 +103,6 @@ export default {
     width: 100%;
 }
 
-#user-photo {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    object-fit: cover;
-}
-
 .media-post {
     background-position: center;
     background-repeat: no-repeat;

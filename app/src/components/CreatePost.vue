@@ -137,16 +137,6 @@ export default {
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
 
-#user-photo {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  object-fit: cover;
-}
-
 .identity {
   display: flex;
   align-items: center;
@@ -187,9 +177,7 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   .mdi {
-    border: 1px solid #e4e4e4;
     padding: 10px 15px;
-    border-radius: 30px;
   }
 }
 
@@ -200,7 +188,7 @@ export default {
     border-radius: .3rem;
     text-align: center;
     font-weight: 500;
-    border: 1px solid #EEEEEE;
+    border: 1px solid #000000;
     width: calc(100% - 20px);
     cursor: pointer;
     @media (max-width:$lg) {
@@ -211,17 +199,5 @@ export default {
 
 .file-select > input[type="file"] {
   display: none;
-}
-
-.select-button {
-    .add-file {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 20px;
-    }
-    .mdi {
-        border: none;
-    }
 }
 </style>

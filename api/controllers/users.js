@@ -6,6 +6,7 @@ const db = require('../models/index.js');
 
 // CONSTANTES
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // Au moins une majuscule, un chiffre. Minimum 8 caractères.
 
 
 
@@ -20,10 +21,8 @@ exports.signup = (req, res, next) => {
 
   if (lastname == null || firstname == null || email == null || password == null) {
     return res.status(400).json({ error: "Vous n'avez pas rempli tous les champs obligatoires."})
-  } else if (password.length <= 5) {
+  } else if (!PASSWORD_REGEX.test(password)) {
     return res.status(400).json({ error: "Mot de passe trop court."})
-  } else if (password.length >= 15) {
-    return res.status(400).json({ error: "Mot de passe trop long."})
   } else if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({ error: "Email non valide." })
   }

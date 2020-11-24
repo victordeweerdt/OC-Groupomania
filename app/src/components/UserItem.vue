@@ -70,16 +70,6 @@ export default {
 <style scoped lang="scss">
 @import '../assets/styles/main.scss';
 
-.user-photo {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 60px;
-  object-fit: cover;
-}
-
 .user-item {
     display: flex;
     align-items: center;
