@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 require('dotenv').config()
 
-const sequelize = new Sequelize('keeplinkdb', process.env.DB_NAME, process.env.DB_MDP, {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_EMAIL, process.env.DB_MDP, {
     host: 'localhost',
     port: 3000,
     dialect: 'mysql'
