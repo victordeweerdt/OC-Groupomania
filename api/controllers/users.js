@@ -22,7 +22,7 @@ exports.signup = (req, res, next) => {
   if (lastname == null || firstname == null || email == null || password == null) {
     return res.status(400).json({ error: "Vous n'avez pas rempli tous les champs obligatoires."})
   } else if (!PASSWORD_REGEX.test(password)) {
-    return res.status(400).json({ error: "Mot de passe trop court."})
+    return res.status(400).json({ error: "Le mot de passe doit comprendre une majuscule et 1 chiffre et doit être de 8 caractères minimum."})
   } else if (!EMAIL_REGEX.test(email)) {
     return res.status(400).json({ error: "Email non valide." })
   }
