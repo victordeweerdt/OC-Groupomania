@@ -34,7 +34,7 @@ CREATE TABLE `Comments` (
   KEY `post_id` (`post_id`),
   CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `Posts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `Comments` (
 
 LOCK TABLES `Comments` WRITE;
 /*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
-INSERT INTO `Comments` VALUES (9,1,37,'Superbe photo ! 🥰','2020-11-17 17:34:15','2020-11-17 17:34:15'),(10,1,36,'Top !','2020-11-17 17:35:54','2020-11-17 17:35:54');
+INSERT INTO `Comments` VALUES (13,17,40,'jhsdjhkjqs','2020-11-23 13:16:50','2020-11-23 13:16:50');
 /*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `Posts` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `Posts` (
 
 LOCK TABLES `Posts` WRITE;
 /*!40000 ALTER TABLE `Posts` DISABLE KEYS */;
-INSERT INTO `Posts` VALUES (33,1,'Test commentaire','http://localhost:3000/images/P1070650_1605633194305.jpg',NULL,'2020-11-17 17:13:14','2020-11-17 17:13:14'),(34,1,'Test avec un gif','http://localhost:3000/images/giphy_1_1605634097562.webp',NULL,'2020-11-17 17:28:17','2020-11-17 17:28:17'),(35,1,'Voici un article qui devrait vous plaire.\nLien : https://medium.com/',NULL,NULL,'2020-11-17 17:28:48','2020-11-17 17:28:48'),(36,8,'Nouveau test de post.',NULL,NULL,'2020-11-17 17:30:54','2020-11-17 17:30:54'),(37,15,'Nouveau post de Lara','http://localhost:3000/images/DSC04386_1605634411505.jpg',NULL,'2020-11-17 17:33:31','2020-11-17 17:33:31');
+INSERT INTO `Posts` VALUES (33,1,'Test commentaire','http://localhost:3000/images/P1070650_1605633194305.jpg',NULL,'2020-11-17 17:13:14','2020-11-17 17:13:14'),(34,1,'Test avec un gif','http://localhost:3000/images/giphy_1_1605634097562.webp',NULL,'2020-11-17 17:28:17','2020-11-17 17:28:17'),(35,1,'Voici un article qui devrait vous plaire.\nLien : https://medium.com/',NULL,NULL,'2020-11-17 17:28:48','2020-11-17 17:28:48'),(40,17,'slkjsd','http://localhost:3000/images/DSC06660_1606137400036.jpg',NULL,'2020-11-23 13:16:40','2020-11-23 13:16:40');
 /*!40000 ALTER TABLE `Posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ CREATE TABLE `Users` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'Deweerdt','Victor','victor@gmail.com','$2b$10$SaTezV.rVZNDh8VkHAMTr.N8j1HSmrRdEu8ClgdLTQD610CqhPJSK',1,'http://localhost:3000/images/DSC04322_1605633169521.jpg','2020-11-13 09:52:27','2020-11-17 17:12:49'),(2,'Tei','Hamza','hamza@gmail.com','$2b$10$RcNilEE6TIgwJ1gJPPHpn./3P6s/B4S351SsMFwcDZppgHW/v68P6',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-13 09:55:30','2020-11-17 09:48:16'),(8,'Seger','Marc','marc@gmail.com','$2b$10$aRJRVNEvlZLhLjNSosvBeOSA48lKAzPDjZLPRgdVb.GT1cWD1zTYy',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-17 17:29:31','2020-11-17 17:29:31'),(14,'Seger','Sonia','sonia@gmail.com','$2b$10$GtaAScYMRzJWaQlII1jUUOE6o7IiS2piXN1n36YTrXh8//iGVsCaS',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-17 17:31:18','2020-11-17 17:31:18'),(15,'Deweerdt','Lara','lara@gmail.com','$2b$10$2ECkO9ZZMjrsIrtXRsrie.CRuDUWdB9JVSD19syCTUvlUWsuUdRG2',0,'http://localhost:3000/images/DSC04543_1605634395719.jpg','2020-11-17 17:32:29','2020-11-17 17:33:15');
+INSERT INTO `Users` VALUES (1,'Deweerdt','Victor','victor@gmail.com','$2b$10$SaTezV.rVZNDh8VkHAMTr.N8j1HSmrRdEu8ClgdLTQD610CqhPJSK',1,'http://localhost:3000/images/DSC04322_1605633169521.jpg','2020-11-13 09:52:27','2020-11-17 17:12:49'),(2,'Tei','Hamza','hamza@gmail.com','$2b$10$RcNilEE6TIgwJ1gJPPHpn./3P6s/B4S351SsMFwcDZppgHW/v68P6',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-13 09:55:30','2020-11-17 09:48:16'),(15,'Deweerdt','Lara','lara@gmail.com','$2b$10$2ECkO9ZZMjrsIrtXRsrie.CRuDUWdB9JVSD19syCTUvlUWsuUdRG2',0,'http://localhost:3000/images/DSC04543_1605634395719.jpg','2020-11-17 17:32:29','2020-11-17 17:33:15'),(17,'eyssette','Carine','carine@gmail.com','$2b$10$Su7QpFbe43uJ7SxhiwgMvebgf1Lec/iqpnqnswcR9QHq4iS5QU1Ri',0,'http://localhost:3000/images/DSC06660_1606137455643.jpg','2020-11-23 13:15:27','2020-11-23 13:17:35'),(18,'Seger','Marc','marc@gmail.com','$2b$10$sOsSksrX9QNFQlxJoybTGexSA3.d4NUx1o0pOVudTxRqsFOgJjBSu',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-24 10:11:33','2020-11-24 10:11:33'),(19,'Gerard','Hubert','hubert@gmail.com','$2b$10$N1SyHzIr0.vqAyb8rLGWlO6J3r.EHPX/UN1f.4UCnlhC9SM84ar4G',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-25 12:54:18','2020-11-25 12:54:18'),(20,'Caer','Lea','lea@gmail.com','$2b$10$eMAokWWAHZ2aB3JVStWSuuuqOZIzYA9Y7A1/AMbRJ3aiw/tsk2KYS',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-25 14:13:29','2020-11-25 14:13:29'),(21,'Martin','Tangy','tangy@gmail.com','$2b$10$7tcyn.ZMFsH1ZB2hc5ttreLMe5UGOpEQ7ThCVuzgSMmbnMb4oDGk6',0,'http://localhost:3000/images/userProfil.jpg1604999623448.jpg','2020-11-25 17:40:17','2020-11-25 17:40:17');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -143,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-17 18:40:29
+-- Dump completed on 2020-11-25 19:07:56
