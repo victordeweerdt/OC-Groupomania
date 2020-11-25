@@ -13,8 +13,8 @@
 - Copier keeplinkdb_sauvegarde.sql dans la base de donnée keeplinkdb. Command : SOURCE keeplinkdb_sauvegarde.sql;
 - Dans un fichier .env à la racine du dossier /api insérer les informations suivantes :
     => DB_NAME=keeplinkdb
-    => DB_EMAIL=admin@keeplink.com
-    => DB_MDP=adminPassword
+    => DB_USER=root
+    => DB_MDP=""
 
 ## Démarrage de l'application backend
 
