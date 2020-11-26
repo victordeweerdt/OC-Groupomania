@@ -17,6 +17,8 @@
 => DB_USER=newuser
 => DB_MDP=123456789
 
+- Attention si vous souhaitez modifier l'utilisateur, pensez à le modifier dans le fichier config.json (developement)
+
 ## Démarrage de l'application backend
 
 - À la racine du dossier api, faites un node server ou nodemon server (node recquis pour cette aplication)
