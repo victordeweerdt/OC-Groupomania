@@ -12,9 +12,10 @@
 - Créer une base donnée nommée "keeplinkdb" dans votre base de donnée mysql. Command : CREATE DATABASE keeplinkdb;
 - Copier keeplinkdb_sauvegarde.sql dans la base de donnée keeplinkdb. Command : SOURCE keeplinkdb_sauvegarde.sql;
 - Dans un fichier .env à la racine du dossier /api insérer les informations suivantes :
-    => DB_NAME=keeplinkdb
-    => DB_USER=root
-    => DB_MDP=""
+=> SECRET_TOKEN=JHGJHDF678SGD785D6G
+=> DB_NAME=keeplinkdb
+=> DB_USER=newuser
+=> DB_MDP=123456789
 
 ## Démarrage de l'application backend
 
